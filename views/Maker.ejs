@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+
+<div>
+    <form action="/maker1" method="post">
+
+        <label for="title">Enter Question</label>
+        <input name="title" type="text">
+        <br>
+        <label for="q1">A) </label>
+        <input id="q1" type="checkbox">
+        <input name="q1t" type="text">
+        <br>
+        <label for="q2">B) </label>
+        <input id="q2" type="checkbox">
+        <input name="q2t" type="text">
+        <br>
+        <label for="q3">C) </label>
+        <input id="q3" type="checkbox">
+        <input name="q3t" type="text">
+        <br>
+        <input name="Bool" id="Bool" type="hidden">
+        <button type="submit" id="MakerBtn" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<%- include('partials/footer') %>

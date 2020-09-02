@@ -1,0 +1,11 @@
+<%- include('partials/header') %>
+
+<%data.forEach(element => {%>
+<h1>Q. <%= element.title %> </h1>
+<%for( i in element.options){%>
+<h3> <%= i %> : <%= element.options[i].cont %> </h3>
+<%}%>
+
+<%})%>
+
+<%- include('partials/footer') %>

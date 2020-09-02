@@ -16,6 +16,7 @@ admin.initializeApp({
 
 const db = admin.firestore();
 const docRef = db.collection("Students");
+const Que = db.collection("Questions");
 
 app.get("/", function (req, res) {
     res.render("home")
@@ -58,7 +59,50 @@ app.post("/find", function (req, res) {
         })
     });
 })
+app.get("/maker", function (req, res) {
+    res.render("Maker")
+})
+app.post("/maker1", function (req, res) {
+    var arr = req.body.Bool.split(",")
+    var que = {
+        title: req.body.title,
+        options: {
+            q1: {
 
+                cont: req.body.q1t,
+                bool: false
+            },
+            q2: {
+                cont: req.body.q2t,
+                bool: false
+            },
+            q3: {
+                cont: req.body.q3t,
+                bool: false
+            }
+        }
+    }
+    for (i in que.options) {
+
+        if (arr.includes(i.toString()))
+            que.options[i].bool = true;
+    }
+    Que.doc(que.title).set(que);
+    res.render("Maker")
+
+})
+app.get("/demo", function (req, res) {
+    var arr = []
+    Que.get().then(function (doc) {
+        for (i in doc.docs)
+            arr.push(doc.docs[i].data())
+
+        res.render("demo", {
+            data: arr
+        })
+
+    })
+})
 
 
 let port = process.env.PORT;

@@ -1,0 +1,27 @@
+<%- include('partials/header') %>
+
+<div class="jumbotron">
+    <h1 class="display-4"> A Simple and Minimal Chat App</h1>
+    <p class="lead"> No Ads, No distractions, just Messages </p>
+</div>
+
+<div>
+    <form action="/register" method="post">
+        <label for="St">Enter Roll No.</label>
+        <input type="text" name="St" placeholder="Enter ">
+        <br>
+        <label for="name1">Name of Student</label>
+        <input type="text" name="name1" placeholder="Name ">
+        <button type="submit" name="btn1" class="btn btn-primary button1"> Register </button>
+    </form>
+    <br>
+    <form action="/find" method="post">
+        <label for="St">Find Student</label>
+        <input type="text" name="St" placeholder="Enter ">
+        <button type="submit" name="btn1" class="btn btn-primary button1"> Find </button>
+    </form>
+
+
+</div>
+
+<%- include('partials/footer') %>

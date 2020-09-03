@@ -2,7 +2,9 @@
 
 <div>
     <form action="/maker1" method="post">
-
+        <label for="no">Sr. No. </label>
+        <input name="no" type="text">
+        <br>
         <label for="title">Enter Question</label>
         <input name="title" type="text">
         <br>
@@ -22,5 +24,15 @@
         <button type="submit" id="MakerBtn" class="btn btn-primary">Submit</button>
     </form>
 </div>
+<script>
+    $("#MakerBtn")[0].addEventListener("click", function () {
+        var arr = []
+        var arr1 = document.querySelectorAll("input[type=checkbox]:checked")
+        arr1.forEach(element => {
+            arr.push(element.id)
+        })
+        document.querySelector("#Bool").value = arr
+    })
+</script>
 
 <%- include('partials/footer') %>

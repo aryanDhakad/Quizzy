@@ -30,15 +30,14 @@ app.post("/register", function (req, res) {
     })
     const stColl = db.collection("Students/" + rollNo + "/ans");
     stColl.doc("Answers").set({
-        1: Math.floor(Math.random() * 10),
-        2: Math.floor(Math.random() * 10),
-        3: Math.floor(Math.random() * 10),
-        4: Math.floor(Math.random() * 10)
+        1: 1,
+        2: 2,
+        3: 3
     })
 
     docRef.doc(rollNo.toString()).get().then(function (snapshot) {
         db.doc("Students/" + rollNo.toString() + "/ans/Answers").get().then(function (list) {
-            console.log(list.data());
+
             res.render("Student", {
                 data: snapshot.data(),
                 list: list.data()
@@ -65,6 +64,7 @@ app.get("/maker", function (req, res) {
 app.post("/maker1", function (req, res) {
     var arr = req.body.Bool.split(",")
     var que = {
+        id: req.body.no,
         title: req.body.title,
         options: {
             q1: {
@@ -87,7 +87,7 @@ app.post("/maker1", function (req, res) {
         if (arr.includes(i.toString()))
             que.options[i].bool = true;
     }
-    Que.doc(que.title).set(que);
+    Que.doc(que.id).set(que);
     res.render("Maker")
 
 })
@@ -98,12 +98,91 @@ app.get("/demo", function (req, res) {
             arr.push(doc.docs[i].data())
 
         res.render("demo", {
-            data: arr
+            data: arr,
+            no: 0
         })
 
     })
 })
+app.post("/question", function (req, res) {
 
+    var arr = []
+    Que.get().then(function (doc) {
+        for (i in doc.docs)
+            arr.push(doc.docs[i].data())
+
+        res.render("demo", {
+            data: arr,
+            no: req.body.demobtn
+        })
+
+    })
+})
+app.post("/nav1", function (req, res) {
+
+
+    var arr1 = req.body.answered.split("],[")
+    var ans = []
+    for (j in arr1) {
+        var arr2 = arr1[j].split(",")
+        ans.push({
+            optNo: arr2[0],
+            optCont: arr2[1],
+            optBool: arr2[2]
+        })
+    }
+    var i = {
+        id: req.body.id,
+        Question: req.body.qtitle,
+        answers: ans
+    }
+    console.log(i);
+    docRef.doc("test1").collection("Answers").doc(i.id).set(i);
+
+    var arr = []
+    Que.get().then(function (doc) {
+        for (i in doc.docs)
+            arr.push(doc.docs[i].data())
+
+        res.render("demo", {
+            data: arr,
+            no: req.body.demobtn
+        })
+
+    })
+})
+app.post("/nav2", function (req, res) {
+
+
+    var arr1 = req.body.answered.split("],[")
+    var ans = []
+    for (j in arr1) {
+        var arr2 = arr1[j].split(",")
+        ans.push({
+            optNo: arr2[0],
+            optCont: arr2[1],
+            optBool: arr2[2]
+        })
+    }
+    var i = {
+        id: req.body.id,
+        Question: req.body.qtitle,
+        answers: ans
+    }
+    docRef.doc("test1").collection("Answers").doc(i.id).set(i);
+
+    var arr = []
+    Que.get().then(function (doc) {
+        for (i in doc.docs)
+            arr.push(doc.docs[i].data())
+
+        res.render("demo", {
+            data: arr,
+            no: req.body.demobtn
+        })
+
+    })
+})
 
 let port = process.env.PORT;
 if (port == null || port == "") {

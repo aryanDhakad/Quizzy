@@ -1,12 +1,21 @@
-console.log("Hello its me");
-$("#MakerBtn")[0].addEventListener("click", function () {
-
-    var arr = []
-    var arr1 = document.querySelectorAll("input[type=checkbox]:checked")
-    arr1.forEach(element => {
-        arr.push(element.id)
+document.querySelector(".forward").addEventListener("click", function () {
+    console.log("forward");
+    var arr = document.querySelectorAll("input[type=checkbox]:checked")
+    var ans = []
+    arr.forEach(element => {
+        ans.push(element.value);
     })
-
-    document.querySelector("#Bool").value = arr
-
+    document.getElementById("qtitleF").value = document.getElementById("heading").innerHTML;
+    document.getElementById("answeredF").value = ans
+    document.nav1.submit()
+})
+document.querySelector(".backward").addEventListener("click", function () {
+    var arr = document.querySelectorAll("input[type=checkbox]:checked")
+    var ans = []
+    arr.forEach(element => {
+        ans.push(element.value);
+    })
+    document.getElementById("qtitleB").value = document.getElementById("heading").innerHTML;
+    document.getElementById("answeredB").value = ans
+    document.nav2.submit()
 })

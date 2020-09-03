@@ -1,11 +1,48 @@
 <%- include('partials/header') %>
+<input type="hidden" id="temp">
+<div class="row">
+    <div class="col-2">
+        <% data.forEach(element => {%>
+        <form method="post" action="/question">
+            <button type="submit" class="btn btn-primary" name="demobtn" value=<%= element.id %>> <%= element.id %>
+            </button>
+        </form>
+        <%})%>
 
-<%data.forEach(element => {%>
-<h1>Q. <%= element.title %> </h1>
-<%for( i in element.options){%>
-<h3> <%= i %> : <%= element.options[i].cont %> </h3>
-<%}%>
+    </div>
+    <div class="col-10">
+        <% data.forEach(element => {%>
+        <%if(element.id == no){%>
+        <h1 id="heading">Q<%= element.id %>. <%= element.title %> </h1>
+        <%for( i in element.options){%>
+        <input type="checkbox" class="bool2"
+            value=[<%= i %>,<%=element.options[i].cont%>,<%= element.options[i].bool %>]>
+        <h3> <%= i %> : <%= element.options[i].cont %> </h3>
+        </button>
+        <%}%>
+        <%}%>
+        <%})%>
+        <div>
+            <form name="nav1" method="post" action="/nav1">
+                <input type="hidden" name="id" value=<%= no %>>
+                <input type="hidden" name="qtitle" id="qtitleF">
+                <input type="hidden" name="answered" id="answeredF">
+                <input type="hidden" name="demobtn" value=<%= parseInt(no)+1%>>
+                <button class="btn btn-primary forward" type="button">NEXT</button>
+            </form>
+            <br>
+            <form name="nav2" method="post" action="/nav2">
+                <input type="hidden" name="id" value=<%= no %>>
+                <input type="hidden" name="qtitle" id="qtitleB">
+                <input type="hidden" name="answered" id="answeredB">
+                <input type="hidden" name="demobtn" value=<%= parseInt(no)-1%>>
+                <button class="btn btn-primary backward" type="button">BACK</button>
+            </form>
+        </div>
+    </div>
+</div>
 
-<%})%>
+
+
 
 <%- include('partials/footer') %>

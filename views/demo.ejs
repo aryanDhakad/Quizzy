@@ -2,11 +2,16 @@
 <input type="hidden" id="temp">
 <div class="row">
     <div class="col-2">
+
         <% data.forEach(element => {%>
-        <form method="post" action="/question">
-            <button type="submit" class="btn btn-primary" name="demobtn" value=<%= element.id %>> <%= element.id %>
-            </button>
+        <form id=<%= element.id %> method="post" action="/nav">
+            <input type="hidden" name="id" value=<%= no %>>
+            <input type="hidden" name="qtitle" id="qtitle<%= element.id %>">
+            <input type="hidden" name="answered" id="answered<%= element.id %>">
+            <input type="hidden" name="demobtn" value=<%= element.id %>>
+            <button class="btn btn-primary Any" type="button"><%= element.id %></button>
         </form>
+
         <%})%>
 
     </div>
@@ -23,7 +28,7 @@
         <%}%>
         <%})%>
         <div>
-            <form name="nav1" method="post" action="/nav1">
+            <form name="nav1" method="post" action="/nav">
                 <input type="hidden" name="id" value=<%= no %>>
                 <input type="hidden" name="qtitle" id="qtitleF">
                 <input type="hidden" name="answered" id="answeredF">
@@ -31,7 +36,7 @@
                 <button class="btn btn-primary forward" type="button">NEXT</button>
             </form>
             <br>
-            <form name="nav2" method="post" action="/nav2">
+            <form name="nav2" method="post" action="/nav">
                 <input type="hidden" name="id" value=<%= no %>>
                 <input type="hidden" name="qtitle" id="qtitleB">
                 <input type="hidden" name="answered" id="answeredB">

@@ -19,3 +19,18 @@ document.querySelector(".backward").addEventListener("click", function () {
     document.getElementById("answeredB").value = ans
     document.nav2.submit()
 })
+document.querySelectorAll(".Any").forEach(element => {
+    element.addEventListener("click", function () {
+        var arr = document.querySelectorAll("input[type=checkbox]:checked")
+        var ans = []
+        arr.forEach(element => {
+            ans.push(element.value);
+        })
+
+        document.getElementById("qtitle" + this.innerHTML).value = document.getElementById("heading").innerHTML;
+        document.getElementById("answered" + this.innerHTML).value = ans
+
+        console.log(document.forms[this.innerHTML]);
+        document.forms[this.innerHTML].submit()
+    })
+})

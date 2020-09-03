@@ -118,7 +118,7 @@ app.post("/question", function (req, res) {
 
     })
 })
-app.post("/nav1", function (req, res) {
+app.post("/nav", function (req, res) {
 
 
     var arr1 = req.body.answered.split("],[")
@@ -136,7 +136,7 @@ app.post("/nav1", function (req, res) {
         Question: req.body.qtitle,
         answers: ans
     }
-    console.log(i);
+
     docRef.doc("test1").collection("Answers").doc(i.id).set(i);
 
     var arr = []
@@ -151,38 +151,7 @@ app.post("/nav1", function (req, res) {
 
     })
 })
-app.post("/nav2", function (req, res) {
 
-
-    var arr1 = req.body.answered.split("],[")
-    var ans = []
-    for (j in arr1) {
-        var arr2 = arr1[j].split(",")
-        ans.push({
-            optNo: arr2[0],
-            optCont: arr2[1],
-            optBool: arr2[2]
-        })
-    }
-    var i = {
-        id: req.body.id,
-        Question: req.body.qtitle,
-        answers: ans
-    }
-    docRef.doc("test1").collection("Answers").doc(i.id).set(i);
-
-    var arr = []
-    Que.get().then(function (doc) {
-        for (i in doc.docs)
-            arr.push(doc.docs[i].data())
-
-        res.render("demo", {
-            data: arr,
-            no: req.body.demobtn
-        })
-
-    })
-})
 
 let port = process.env.PORT;
 if (port == null || port == "") {

@@ -6,8 +6,8 @@
         <% data.forEach(element => {%>
         <form id=<%= element.id %> method="post" action="/nav">
             <input type="hidden" name="id" value=<%= no %>>
-            <input type="hidden" name="qtitle" id="qtitle<%= element.id %>">
-            <input type="hidden" name="answered" id="answered<%= element.id %>">
+            <input type="hidden" name="qtitle" class="qtitle">
+            <input type="hidden" name="answered" class="answered">
             <input type="hidden" name="demobtn" value=<%= element.id %>>
             <button class="btn btn-primary Any" type="button"><%= element.id %></button>
         </form>
@@ -30,16 +30,16 @@
         <div>
             <form name="nav1" method="post" action="/nav">
                 <input type="hidden" name="id" value=<%= no %>>
-                <input type="hidden" name="qtitle" id="qtitleF">
-                <input type="hidden" name="answered" id="answeredF">
+                <input type="hidden" name="qtitle" class="qtitle">
+                <input type="hidden" name="answered" class="answered">
                 <input type="hidden" name="demobtn" value=<%= parseInt(no)+1%>>
                 <button class="btn btn-primary forward" type="button">NEXT</button>
             </form>
             <br>
             <form name="nav2" method="post" action="/nav">
                 <input type="hidden" name="id" value=<%= no %>>
-                <input type="hidden" name="qtitle" id="qtitleB">
-                <input type="hidden" name="answered" id="answeredB">
+                <input type="hidden" name="qtitle" class="qtitle">
+                <input type="hidden" name="answered" class="answered">
                 <input type="hidden" name="demobtn" value=<%= parseInt(no)-1%>>
                 <button class="btn btn-primary backward" type="button">BACK</button>
             </form>

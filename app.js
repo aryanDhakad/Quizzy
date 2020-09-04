@@ -120,7 +120,7 @@ app.post("/question", function (req, res) {
 })
 app.post("/nav", function (req, res) {
 
-
+    console.log(req.body);
     var arr1 = req.body.answered.split("],[")
     var ans = []
     for (j in arr1) {

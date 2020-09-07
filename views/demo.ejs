@@ -1,48 +1,63 @@
 <%- include('partials/header') %>
-<input type="hidden" id="temp">
+<div>
+    <h2>Student ID : <%= rollNo %> </h2>
+</div>
 <div class="row">
     <div class="col-2">
+        <div class="container1">
+            <% data.forEach(element => {%>
+            <form id=<%= element.id %> method="post" action="/nav" class="nav1">
+                <input type="hidden" name="rollNo" value=<%= rollNo %>>
+                <input type="hidden" name="id" value=<%= no %>>
+                <input type="hidden" name="qtitle" class="qtitle">
+                <input type="hidden" name="answered" class="answered">
+                <input type="hidden" name="demobtn" value=<%= element.id %>>
+                <button class="btn btn-primary Any" type="button"><%= element.id %></button>
+            </form>
 
-        <% data.forEach(element => {%>
-        <form id=<%= element.id %> method="post" action="/nav">
-            <input type="hidden" name="id" value=<%= no %>>
-            <input type="hidden" name="qtitle" class="qtitle">
-            <input type="hidden" name="answered" class="answered">
-            <input type="hidden" name="demobtn" value=<%= element.id %>>
-            <button class="btn btn-primary Any" type="button"><%= element.id %></button>
-        </form>
-
-        <%})%>
-
+            <%})%>
+        </div>
     </div>
     <div class="col-10">
         <% data.forEach(element => {%>
         <%if(element.id == no){%>
         <h1 id="heading">Q<%= element.id %>. <%= element.title %> </h1>
         <%for( i in element.options){%>
-        <input type="checkbox" class="bool2"
-            value=[<%= i %>,<%=element.options[i].cont%>,<%= element.options[i].bool %>]>
-        <h3> <%= i %> : <%= element.options[i].cont %> </h3>
-        </button>
+        <div class="options">
+            <label><%= i %> </label>
+            <input type="checkbox" class="bool2"
+                value=[<%= i %>,<%=element.options[i].cont%>,<%= element.options[i].bool %>]>
+            <h2> <%= element.options[i].cont %> </h2>
+        </div>
         <%}%>
         <%}%>
         <%})%>
         <div>
-            <form name="nav1" method="post" action="/nav">
-                <input type="hidden" name="id" value=<%= no %>>
-                <input type="hidden" name="qtitle" class="qtitle">
-                <input type="hidden" name="answered" class="answered">
-                <input type="hidden" name="demobtn" value=<%= parseInt(no)+1%>>
-                <button class="btn btn-primary forward" type="button">NEXT</button>
-            </form>
-            <br>
-            <form name="nav2" method="post" action="/nav">
-                <input type="hidden" name="id" value=<%= no %>>
-                <input type="hidden" name="qtitle" class="qtitle">
-                <input type="hidden" name="answered" class="answered">
-                <input type="hidden" name="demobtn" value=<%= parseInt(no)-1%>>
-                <button class="btn btn-primary backward" type="button">BACK</button>
-            </form>
+            <h4>Your Answers : <%= answered1 %> </h4>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <form name="nav2" method="post" action="/nav" class="nav2">
+                    <input type="hidden" name="rollNo" value=<%= rollNo %>>
+                    <input type="hidden" name="id" value=<%= no %>>
+                    <input type="hidden" name="qtitle" class="qtitle">
+                    <input type="hidden" name="answered" class="answered">
+                    <input type="hidden" name="demobtn" value=<%= parseInt(no)-1%>>
+                    <button class="btn btn-primary backward" type="button">BACK</button>
+                </form>
+            </div>
+
+            <div class="col-6">
+                <form name="nav1" method="post" action="/nav" class="nav2">
+                    <input type="hidden" name="rollNo" value=<%= rollNo %>>
+                    <input type="hidden" name="id" value=<%= no %>>
+                    <input type="hidden" name="qtitle" class="qtitle">
+                    <input type="hidden" name="answered" class="answered">
+                    <input type="hidden" name="demobtn" value=<%= parseInt(no)+1%>>
+                    <button class="btn btn-primary forward" type="button">NEXT</button>
+                </form>
+            </div>
+
         </div>
     </div>
 </div>

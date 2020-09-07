@@ -28,25 +28,12 @@ app.post("/register", function (req, res) {
     docRef.doc(rollNo).set({
         Name: req.body.name1
     })
-    const stColl = db.collection("Students/" + rollNo + "/ans");
-    stColl.doc("Answers").set({
-        1: 1,
-        2: 2,
-        3: 3
-    })
+    res.render("home")
 
-    docRef.doc(rollNo.toString()).get().then(function (snapshot) {
-        db.doc("Students/" + rollNo.toString() + "/ans/Answers").get().then(function (list) {
 
-            res.render("Student", {
-                data: snapshot.data(),
-                list: list.data()
-            })
-        })
-    });
 });
 app.post("/find", function (req, res) {
-    const rollNo = req.body.St.substring(0, 3).toUpperCase() + req.body.St.slice(3)
+
 
     docRef.doc(rollNo.toString()).get().then(function (snapshot) {
         db.doc("Students/" + rollNo.toString() + "/ans/Answers").get().then(function (list) {
@@ -63,49 +50,38 @@ app.get("/maker", function (req, res) {
 })
 app.post("/maker1", function (req, res) {
     var arr = req.body.Bool.split(",")
+    console.log(arr);
     var que = {
         id: req.body.no,
         title: req.body.title,
         options: {
-            q1: {
+            A: {
 
-                cont: req.body.q1t,
+                cont: req.body.At,
                 bool: false
             },
-            q2: {
-                cont: req.body.q2t,
+            B: {
+                cont: req.body.Bt,
                 bool: false
             },
-            q3: {
-                cont: req.body.q3t,
+            C: {
+                cont: req.body.Ct,
                 bool: false
             }
         }
     }
     for (i in que.options) {
 
-        if (arr.includes(i.toString()))
+        if (arr.includes(i))
             que.options[i].bool = true;
     }
     Que.doc(que.id).set(que);
     res.render("Maker")
 
 })
-app.get("/demo", function (req, res) {
-    var arr = []
-    Que.get().then(function (doc) {
-        for (i in doc.docs)
-            arr.push(doc.docs[i].data())
 
-        res.render("demo", {
-            data: arr,
-            no: 0
-        })
-
-    })
-})
 app.post("/question", function (req, res) {
-
+    const rollNo = req.body.rollNo.substring(0, 3).toUpperCase() + req.body.rollNo.slice(3)
     var arr = []
     Que.get().then(function (doc) {
         for (i in doc.docs)
@@ -113,14 +89,16 @@ app.post("/question", function (req, res) {
 
         res.render("demo", {
             data: arr,
-            no: req.body.demobtn
+            no: 1,
+            rollNo: rollNo,
+            answered1: []
         })
 
     })
 })
 app.post("/nav", function (req, res) {
+    var rollNo = req.body.rollNo
 
-    console.log(req.body);
     var arr1 = req.body.answered.split("],[")
     var ans = []
     for (j in arr1) {
@@ -137,19 +115,33 @@ app.post("/nav", function (req, res) {
         answers: ans
     }
 
-    docRef.doc("test1").collection("Answers").doc(i.id).set(i);
+    if (arr1[0]) {
+        docRef.doc(rollNo).collection("Answers").doc(i.id).set(i);
+    }
+    var arr3 = [];
+    docRef.doc(rollNo).collection("Answers").doc(req.body.demobtn).get().then(function (snapshot) {
+        if (snapshot) {
+            var datArr = snapshot.data()["answers"]
+            for (i in datArr) {
+                arr3.push(datArr[i].optNo);
+            }
+        }
+        var arr = []
+        Que.get().then(function (doc) {
+            for (i in doc.docs)
+                arr.push(doc.docs[i].data())
 
-    var arr = []
-    Que.get().then(function (doc) {
-        for (i in doc.docs)
-            arr.push(doc.docs[i].data())
+            res.render("demo", {
+                data: arr,
+                no: req.body.demobtn,
+                rollNo: req.body.rollNo,
+                answered1: arr3
+            })
 
-        res.render("demo", {
-            data: arr,
-            no: req.body.demobtn
         })
-
     })
+
+
 })
 
 

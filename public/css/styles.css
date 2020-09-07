@@ -1,0 +1,84 @@
+body {
+    text-align: center;
+}
+
+input[type="checkbox"] {
+    width: 3rem;
+}
+
+#heading {
+    text-align: left;
+    padding: 5px 20px;
+}
+
+input[type="checkbox"]:checked::before {
+    content: '\2713';
+    background-color: mediumseagreen;
+    box-shadow: 8px green;
+    width: 20px;
+}
+
+/* DEMO PAGE */
+h2 {
+    display: inline;
+}
+
+.options {
+    text-align: left;
+    display: block;
+    padding: 15px 10px;
+    margin: 10px auto;
+    border: 1px solid;
+    box-sizing: border-box;
+    border-radius: 25px;
+    box-shadow: 0 0 8px 0 black;
+}
+
+.conatiner1 {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.Any {
+    margin: 10px 10px;
+    width: 80px;
+    height: 20px;
+    display: block;
+}
+
+form {
+    display: inline-block;
+    padding: 20px 30px;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.nav1 {
+    padding: 0;
+    margin: 0 5px;
+}
+
+.nav2 {
+    padding: 5px;
+}
+
+.Any {
+    height: 30px
+}
+
+/* HOME PAGE */
+.homeBtn {
+    display: block;
+    margin: 10px auto;
+}
+
+.card-footer {
+    justify-content: center;
+}
+
+input[type="text"] {
+    box-sizing: border-box;
+    border-radius: 25px;
+    padding: 5px 7px;
+    margin: 10px 20px;
+}

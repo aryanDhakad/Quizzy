@@ -8,29 +8,31 @@
         <label for="title">Enter Question</label>
         <input name="title" type="text">
         <br>
-        <label for="q1">A) </label>
-        <input id="q1" type="checkbox">
-        <input name="q1t" type="text">
+        <label for="A">A) </label>
+        <input id="A" type="checkbox">
+        <input name="At" type="text">
         <br>
-        <label for="q2">B) </label>
-        <input id="q2" type="checkbox">
-        <input name="q2t" type="text">
+        <label for="B">B) </label>
+        <input id="B" type="checkbox">
+        <input name="Bt" type="text">
         <br>
-        <label for="q3">C) </label>
-        <input id="q3" type="checkbox">
-        <input name="q3t" type="text">
+        <label for="C">C) </label>
+        <input id="C" type="checkbox">
+        <input name="Ct" type="text">
         <br>
         <input name="Bool" id="Bool" type="hidden">
         <button type="submit" id="MakerBtn" class="btn btn-primary">Submit</button>
     </form>
 </div>
 <script>
-    $("#MakerBtn")[0].addEventListener("click", function () {
+    document.getElementById("MakerBtn").addEventListener("click", function () {
         var arr = []
         var arr1 = document.querySelectorAll("input[type=checkbox]:checked")
+        console.log(arr1);
         arr1.forEach(element => {
             arr.push(element.id)
         })
+        console.log(arr);
         document.querySelector("#Bool").value = arr
     })
 </script>

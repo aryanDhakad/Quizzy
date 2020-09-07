@@ -14,6 +14,7 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
 
+
 const db = admin.firestore();
 const docRef = db.collection("Students");
 const Que = db.collection("Questions");
@@ -98,7 +99,7 @@ app.post("/question", function (req, res) {
 })
 app.post("/nav", function (req, res) {
     var rollNo = req.body.rollNo
-
+    console.log(req.body.demobtn);
     var arr1 = req.body.answered.split("],[")
     var ans = []
     for (j in arr1) {
@@ -119,8 +120,10 @@ app.post("/nav", function (req, res) {
         docRef.doc(rollNo).collection("Answers").doc(i.id).set(i);
     }
     var arr3 = [];
+
     docRef.doc(rollNo).collection("Answers").doc(req.body.demobtn).get().then(function (snapshot) {
-        if (snapshot) {
+
+        if (snapshot.data()) {
             var datArr = snapshot.data()["answers"]
             for (i in datArr) {
                 arr3.push(datArr[i].optNo);

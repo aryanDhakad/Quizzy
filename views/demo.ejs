@@ -11,7 +11,7 @@
                 <input type="hidden" name="id" value=<%= no %>>
                 <input type="hidden" name="qtitle" class="qtitle">
                 <input type="hidden" name="answered" class="answered">
-                <input type="hidden" name="demobtn" value=<%= element.id %>>
+                <input type="hidden" name="demobtn" value=<%= parseInt(element.id)-1 %>>
                 <button class="btn btn-primary Any" type="button"><%= element.id %></button>
             </form>
 

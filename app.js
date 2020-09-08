@@ -84,7 +84,35 @@ app.post("/question", function (req, res) {
     })
 })
 app.post("/submit", function (req, res) {
-    console.log(req.body.submit);
+    var arr = req.body.submit.split(",")
+    arr.sort();
+    var ans = []
+    Que.get().then(function (snapshot) {
+        const d = snapshot.docs
+        for (i in d) {
+            const id = d[i].data().id
+            var temp = {
+                id: d[i].data().id,
+                Title: d[i].data().title,
+                check: []
+            }
+            const opt = d[i].data().options
+            for (j in opt) {
+                const item = id + "." + j
+                if (arr.includes(item)) {
+                    var temp2 = {
+                        optNo: j,
+                        optCont: opt[j].cont,
+                        optBool: opt[j].bool
+                    }
+                    temp.check.push(temp2)
+                }
+
+            }
+            ans.push(temp);
+        }
+        console.log(ans);
+    })
 })
 
 

@@ -47,6 +47,6 @@ document.getElementById("check").addEventListener("click", function () {
         ans.push(element.id)
     })
     document.getElementById("submit").value = ans
-    console.log(document.f1);
+
 
 })

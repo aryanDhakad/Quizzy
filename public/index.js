@@ -1,4 +1,7 @@
 var curr = "1"
+var a = 0,
+    sec = 0,
+    min = 0;
 
 document.querySelector(".forward").addEventListener("click", function () {
     var temp = curr
@@ -69,7 +72,7 @@ document.getElementById("check").addEventListener("click", function () {
         st += " , "
     }
     document.getElementById("modalContent").innerHTML = st;
-
+    clearInterval(kill)
 })
 
 document.getElementById("review").addEventListener("click", function () {
@@ -80,3 +83,24 @@ document.getElementById("review").addEventListener("click", function () {
         }
     })
 })
+window.addEventListener("load", function () {
+
+    kill = setInterval(timer, 100);
+})
+
+
+function timer() {
+    a += 100;
+    if (a === 1000) {
+        sec += 1;
+        a = 0
+    }
+    if (sec === 60) {
+        min += 1;
+        sec = 0
+    }
+    m = (min > 10) ? (10 - min).toString() + " : " : (10 - min).toString() + " : "
+    s = (sec > 10) ? (60 - sec).toString() : (60 - sec).toString()
+    document.getElementById("watch").innerHTML = m + s;
+
+}

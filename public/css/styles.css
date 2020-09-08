@@ -19,7 +19,8 @@ input[type="checkbox"]:checked::before {
 }
 
 /* DEMO PAGE */
-h2 {
+h2,
+h3 {
     display: inline;
 }
 
@@ -53,14 +54,6 @@ form {
     text-align: center;
 }
 
-.nav1 {
-    padding: 0;
-    margin: 0 5px;
-}
-
-.nav2 {
-    padding: 5px;
-}
 
 .Any {
     height: 30px
@@ -101,4 +94,21 @@ input[type="text"]:focus {
 
 }
 
-/* DEMO PAGE */
+/* DISPLAY PAGE */
+.options1 {
+    display: flex;
+    text-align: left;
+    padding: 15px 10px;
+    margin: 10px auto;
+    border: 1px solid;
+    box-sizing: border-box;
+    border-radius: 25px;
+    box-shadow: 0 0 8px 0 black;
+    flex-flow: row wrap;
+
+}
+
+.Bool {
+    position: absolute;
+    right: 50px;
+}

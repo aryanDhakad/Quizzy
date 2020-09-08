@@ -1,23 +1,79 @@
 <%- include('partials/header') %>
 <div>
-    <h2>Student ID : <%= rollNo %> </h2>
+    <h2>Student ID : <%= rollNo %>
+        <span class="badge badge-success"><%= stat.right %> </span>
+        <span class="badge badge-danger"><%= stat.wrong %></span>
+        <span class="badge badge-primary">Total : <%= stat.right - stat.wrong %> </span>
+    </h2>
+
 </div>
-
-
-
-<% data.forEach(element => {%>
-<div class="question" id="<%= element.id %>" style="display: none">
-    <h1 id="heading">Q<%= element.id %>. <%= element.title %> </h1>
-    <%for( i in element.options){%>
-    <div class="options">
-        <label><%= i %> </label>
-        <input type="checkbox" class="bool2" id="<%= element.id %>.<%= i %>"
-            value=[<%= i %>,<%=element.options[i].cont%>,<%= element.options[i].bool %>]>
-        <h2> <%= element.options[i].cont %> </h2>
-    </div>
-    <%}%>
+<div class="row">
+    <div class="col-2">
+        <div class="container1">
+            <% data.forEach(element => {%>
+            <button class="btn btn-primary Any" type="button" value=<%= element.id %>
+                id=<%= element.id %>><%= element.id %></button>
+            <%})%>
         </div>
-        <%})%>
+    </div>
+
+    <div class="col-10">
+        <% data.forEach(element => {%>
+        <div class="question" id="<%= element.id %>" style="display: none">
+            <h1 id="heading">Q<%= element.id %>. <%= element.title %> </h1>
+            <%for( i in element.check){%>
+            <div class="options1">
+                <h3 class="mx-4"><%= element.check[i].optNo %> </h3>
+                <h3 class="mx-4"> <%= element.check[i].optCont %> </h3>
+                <%if(element.check[i].optBool){%>
+                <span class="badge badge-success Bool mx-5">
+                    <h3 class="resultOpt"> <%= element.check[i].optBool %> </h3>
+                </span>
+                <%}else{%>
+                <span class="badge badge-danger Bool mx-5">
+                    <h3 class=""> <%= element.check[i].optBool %> </h3>
+                </span>
+                <%}%>
+                
+            </div>
+            <%}%>
+            </div>
+            <%})%>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-6">
+
+            <button class="btn btn-primary backward" type="button">BACK</button>
+
+        </div>
+
+        <div class="col-6">
+
+            <button class="btn btn-primary forward" type="button">NEXT</button>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

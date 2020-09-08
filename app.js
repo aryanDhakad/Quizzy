@@ -84,6 +84,8 @@ app.post("/question", function (req, res) {
     })
 })
 app.post("/submit", function (req, res) {
+    var correct = 0;
+    var incorrect = 0
     var arr = req.body.submit.split(",")
     arr.sort();
     var ans = []
@@ -93,7 +95,7 @@ app.post("/submit", function (req, res) {
             const id = d[i].data().id
             var temp = {
                 id: d[i].data().id,
-                Title: d[i].data().title,
+                title: d[i].data().title,
                 check: []
             }
             const opt = d[i].data().options
@@ -105,14 +107,30 @@ app.post("/submit", function (req, res) {
                         optCont: opt[j].cont,
                         optBool: opt[j].bool
                     }
+                    if (temp2.optBool) {
+                        correct += 1;
+                    } else {
+                        incorrect += 1;
+                    }
                     temp.check.push(temp2)
                 }
 
             }
             ans.push(temp);
         }
-        console.log(ans);
+        docRef.doc(req.body.rollNo).collection("Answer").add({
+            Data: ans
+        })
+        res.render("display", {
+            data: ans,
+            rollNo: req.body.rollNo,
+            stat: {
+                right: correct,
+                wrong: incorrect
+            }
+        })
     })
+
 })
 
 

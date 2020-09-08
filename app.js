@@ -1,6 +1,8 @@
 const express = require("express");
 const ejs = require("ejs");
 const app = express();
+const bcrypt = require("bcrypt");
+const saltRound = 2;
 app.use(express.urlencoded({
     extended: true
 }))
@@ -26,9 +28,16 @@ app.get("/", function (req, res) {
 
 app.post("/register", function (req, res) {
     const rollNo = req.body.St.substring(0, 3).toUpperCase() + req.body.St.slice(3)
-    docRef.doc(rollNo).set({
-        Name: req.body.name1
+
+    bcrypt.hash(req.body.password, saltRound, function (err, hash) {
+        {
+            docRef.doc(rollNo).set({
+                Name: req.body.name1,
+                Password: hash
+            })
+        }
     })
+
     res.render("home")
 
 
@@ -72,16 +81,28 @@ app.post("/maker1", function (req, res) {
 app.post("/question", function (req, res) {
     const rollNo = req.body.rollNo.substring(0, 3).toUpperCase() + req.body.rollNo.slice(3)
     var arr = []
-    Que.get().then(function (doc) {
-        for (i in doc.docs)
-            arr.push(doc.docs[i].data())
+    docRef.doc(rollNo).get().then(function (snapshot) {
 
-        res.render("demo", {
-            data: arr,
-            rollNo: rollNo
+        const hash = snapshot.data().Password
+        bcrypt.compare(req.body.password, hash, function (err, result) {
+            if (result) {
+                Que.get().then(function (doc) {
+                    for (i in doc.docs)
+                        arr.push(doc.docs[i].data())
+
+                    res.render("demo", {
+                        data: arr,
+                        rollNo: rollNo
+                    })
+
+                })
+            } else {
+                res.render("home")
+            }
         })
-
     })
+
+
 })
 app.post("/submit", function (req, res) {
     var correct = 0;

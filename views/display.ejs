@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+<div>
+    <h2>Student ID : <%= rollNo %> </h2>
+</div>
+
+
+
+<% data.forEach(element => {%>
+<div class="question" id="<%= element.id %>" style="display: none">
+    <h1 id="heading">Q<%= element.id %>. <%= element.title %> </h1>
+    <%for( i in element.options){%>
+    <div class="options">
+        <label><%= i %> </label>
+        <input type="checkbox" class="bool2" id="<%= element.id %>.<%= i %>"
+            value=[<%= i %>,<%=element.options[i].cont%>,<%= element.options[i].bool %>]>
+        <h2> <%= element.options[i].cont %> </h2>
+    </div>
+    <%}%>
+        </div>
+        <%})%>
+
+
+
+
+
+    <%- include('partials/footer') %>

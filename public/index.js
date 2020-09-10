@@ -3,60 +3,65 @@ var a = 0,
     sec = 0,
     min = 0;
 
-document.querySelector(".forward").addEventListener("click", function () {
+$(".forward")[0].addEventListener("click", function () {
     var temp = curr
-    document.querySelectorAll(".question").forEach(element => {
+    Array.from($(".question")).forEach(element => {
 
         if (element.id === (parseInt(curr) + 1).toString()) {
 
             element.style.display = "block";
             temp = element.id
-            document.getElementById(temp).classList.remove("btn-primary");
-            document.getElementById(temp).classList.remove("btn-warning");
-            document.getElementById(temp).classList.add("btn-success");
+            $("#" + temp).removeClass("btn-primary");
+            $("#" + temp).removeClass("btn-warning");
+            $("#" + temp).addClass("btn-success");
         } else
             element.style.display = "none";
     })
     curr = temp
 })
-document.querySelector(".backward").addEventListener("click", function () {
+$(".backward")[0].addEventListener("click", function () {
     if (parseInt(curr) > 1) {
-        document.querySelectorAll(".question").forEach(element => {
+        Array.from($(".question")).forEach(element => {
 
             if (element.id === (parseInt(curr) - 1).toString()) {
 
                 element.style.display = "block";
                 curr = element.id
-                document.getElementById(curr).classList.remove("btn-primary");
-                document.getElementById(curr).classList.remove("btn-warning");
-                document.getElementById(curr).classList.add("btn-success");
+                $("#" + curr).removeClass("btn-primary");
+                $("#" + curr).removeClass("btn-warning");
+                $("#" + curr).addClass("btn-success");
             } else
                 element.style.display = "none";
-
-
         })
     }
 })
 
-document.querySelectorAll(".Any").forEach(element => {
+
+
+
+
+
+Array.from($(".Any")).forEach(element => {
     element.addEventListener("click", function () {
-        document.querySelectorAll(".question").forEach(element => {
+        Array.from($(".question")).forEach(element => {
 
             if (element.id === this.id) {
 
                 element.style.display = "block";
                 curr = this.id
-                document.getElementById(curr).classList.remove("btn-primary");
-                document.getElementById(curr).classList.remove("btn-warning");
-                document.getElementById(curr).classList.add("btn-success");
+
+                $("#" + curr).removeClass("btn-primary");
+                $("#" + curr).removeClass("btn-warning");
+                $("#" + curr).addClass("btn-success");
             } else
                 element.style.display = "none";
         })
     })
 })
-document.getElementById("check").addEventListener("click", function () {
 
-    var arr = document.querySelectorAll("input[type=checkbox]:checked")
+$("#check")[0].addEventListener("click", function () {
+
+    var arr = Array.from($("input[type=checkbox]:checked"))
     var ans = []
     var ans1 = new Set()
     arr.forEach(element => {
@@ -64,19 +69,19 @@ document.getElementById("check").addEventListener("click", function () {
         ans1.add(element.id.substring(0, 1))
     })
     var set1 = Array.from(ans1);
-    document.getElementById("submit").value = ans;
+    $("#submit")[0].value = ans;
 
     var st = ""
     for (i in set1) {
         st += set1[i];
         st += " , "
     }
-    document.getElementById("modalContent").innerHTML = st;
+    $("#modalContent")[0].innerHTML = st;
     clearInterval(kill)
 })
 
-document.getElementById("review").addEventListener("click", function () {
-    document.querySelectorAll(".Any").forEach(element => {
+$("#review")[0].addEventListener("click", function () {
+    Array.from($(".Any")).forEach(element => {
         if (element.id == curr) {
             element.classList.remove("btn-success")
             element.classList.add("btn-warning")
@@ -101,6 +106,6 @@ function timer() {
     }
     m = (min > 10) ? (10 - min).toString() + " : " : (10 - min).toString() + " : "
     s = (sec > 10) ? (60 - sec).toString() : (60 - sec).toString()
-    document.getElementById("watch").innerHTML = m + s;
+    $("#watch")[0].innerHTML = m + s;
 
 }

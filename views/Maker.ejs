@@ -24,6 +24,20 @@
         <button type="submit" id="MakerBtn" class="btn btn-primary">Submit</button>
     </form>
 </div>
+<br>
+<div>
+    <form action="/maker2" method="post">
+        <label for="no">Sr. No. </label>
+        <input name="no" type="text">
+        <br>
+        <label for="title">Enter Question</label>
+        <input name="title" type="text">
+        <br>
+        <label for="A">Answer Value : </label>
+        <input name="A" type="text">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
 <script>
     document.getElementById("MakerBtn").addEventListener("click", function () {
         var arr = []

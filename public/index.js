@@ -1,43 +1,38 @@
 var curr = "1"
+const mxLength = $("#mxLength").val()
+
 var a = 0,
     sec = 0,
     min = 0;
 
-$(".forward")[0].addEventListener("click", function () {
-    var temp = curr
-    Array.from($(".question")).forEach(element => {
 
-        if (element.id === (parseInt(curr) + 1).toString()) {
 
-            element.style.display = "block";
-            temp = element.id
-            $("#" + temp).removeClass("btn-primary");
-            $("#" + temp).removeClass("btn-warning");
-            $("#" + temp).addClass("btn-success");
-        } else
-            element.style.display = "none";
+Array.from($(".nav")).forEach(id => {
+    id.addEventListener("click", function () {
+        var temp = (parseInt(curr) + parseInt(id.value)).toString()
+        if (parseInt(temp) < parseInt(mxLength) + 1 && parseInt(temp) > 0) {
+            Array.from($(".question")).forEach(element => {
+
+                if (element.id === temp) {
+
+                    element.style.display = "block";
+
+                    $("#" + temp).removeClass("btn-primary");
+                    $("#" + temp).removeClass("btn-warning");
+                    $("#" + temp).addClass("btn-success");
+                } else
+                    element.style.display = "none";
+            })
+        }
+        if (parseInt(temp) < 1)
+            temp = "1";
+        else if (parseInt(temp) > parseInt(mxLength))
+            temp = mxLength;
+        else
+            temp = temp;
+        curr = temp
     })
-    curr = temp
 })
-$(".backward")[0].addEventListener("click", function () {
-    if (parseInt(curr) > 1) {
-        Array.from($(".question")).forEach(element => {
-
-            if (element.id === (parseInt(curr) - 1).toString()) {
-
-                element.style.display = "block";
-                curr = element.id
-                $("#" + curr).removeClass("btn-primary");
-                $("#" + curr).removeClass("btn-warning");
-                $("#" + curr).addClass("btn-success");
-            } else
-                element.style.display = "none";
-        })
-    }
-})
-
-
-
 
 
 

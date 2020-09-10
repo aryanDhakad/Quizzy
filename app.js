@@ -20,6 +20,7 @@ admin.initializeApp({
 const db = admin.firestore();
 const docRef = db.collection("Students");
 const Que = db.collection("Questions");
+const Int = db.collection("Intergers")
 
 app.get("/", function (req, res) {
     res.render("home")
@@ -78,9 +79,20 @@ app.post("/maker1", function (req, res) {
 
 })
 
+app.post("/maker2", function (req, res) {
+    var i = {
+        id: req.body.no,
+        title: req.body.title,
+        opt: req.body.A
+    }
+    Int.doc(i.id).set(i)
+    res.render("Maker")
+})
+
 app.post("/question", function (req, res) {
     const rollNo = req.body.rollNo.substring(0, 3).toUpperCase() + req.body.rollNo.slice(3)
     var arr = []
+    var arr1 = []
     docRef.doc(rollNo).get().then(function (snapshot) {
 
         const hash = snapshot.data().Password
@@ -89,9 +101,14 @@ app.post("/question", function (req, res) {
                 Que.get().then(function (doc) {
                     for (i in doc.docs)
                         arr.push(doc.docs[i].data())
+                    Int.get().then(function (doc1) {
+                        for (i in doc.docs)
+                            arr1.push(doc.docs[i].data())
+                    })
 
                     res.render("demo", {
                         data: arr,
+                        data1: arr1,
                         rollNo: rollNo
                     })
 
@@ -101,8 +118,30 @@ app.post("/question", function (req, res) {
             }
         })
     })
+})
+app.post("/question1", function (req, res) {
+    const rollNo = req.body.rollNo.substring(0, 3).toUpperCase() + req.body.rollNo.slice(3)
+    var arr = []
 
+    docRef.doc(rollNo).get().then(function (snapshot) {
 
+        const hash = snapshot.data().Password
+        bcrypt.compare(req.body.password, hash, function (err, result) {
+            if (result) {
+                Int.get().then(function (doc) {
+                    for (i in doc.docs)
+                        arr.push(doc.docs[i].data())
+
+                    res.render("demo1", {
+                        data: arr,
+                        rollNo: rollNo
+                    })
+                })
+            } else {
+                res.render("home")
+            }
+        })
+    })
 })
 app.post("/submit", function (req, res) {
     var correct = 0;

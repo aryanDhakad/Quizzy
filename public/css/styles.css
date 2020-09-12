@@ -59,6 +59,12 @@ form {
     height: 30px
 }
 
+.btn {
+    transition: .4s;
+    padding: 5px;
+    margin: 5px;
+}
+
 /* HOME PAGE */
 .homeBtn {
     display: block;
@@ -86,12 +92,22 @@ input[type="text"] {
     border-radius: 25px;
     padding: 5px 7px;
     margin: 10px 20px;
+    transition: .4s
 }
 
 input[type="text"]:focus {
+    display: inline;
     border-width: 0;
-    width: 80%;
+    border-bottom: 5px solid purple;
 
+
+}
+
+hr {
+    border-width: 0 0 8px 0;
+    border-style: dotted;
+    width: 70%;
+    border-color: green;
 }
 
 /* DISPLAY PAGE */

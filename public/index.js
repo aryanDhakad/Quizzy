@@ -34,7 +34,14 @@ Array.from($(".nav")).forEach(id => {
     })
 })
 
-
+$("#review")[0].addEventListener("click", function () {
+    Array.from($(".Any")).forEach(element => {
+        if (element.id == curr) {
+            element.classList.remove("btn-success")
+            element.classList.add("btn-warning")
+        }
+    })
+})
 
 Array.from($(".Any")).forEach(element => {
     element.addEventListener("click", function () {
@@ -75,14 +82,7 @@ $("#check")[0].addEventListener("click", function () {
     clearInterval(kill)
 })
 
-$("#review")[0].addEventListener("click", function () {
-    Array.from($(".Any")).forEach(element => {
-        if (element.id == curr) {
-            element.classList.remove("btn-success")
-            element.classList.add("btn-warning")
-        }
-    })
-})
+
 window.addEventListener("load", function () {
 
     kill = setInterval(timer, 100);

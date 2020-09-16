@@ -79,8 +79,32 @@ $("#check")[0].addEventListener("click", function () {
         st += " , "
     }
     $("#modalContent")[0].innerHTML = st;
-    clearInterval(kill)
+
 })
+
+function doit() {
+    var arr2 = Array.from($("input[type=text]"))
+    var arr2Ans = []
+    arr2.forEach(ele => {
+        if (ele.value !== "")
+            arr2Ans.push(ele.id + "." + ele.value)
+        else
+            arr2Ans.push(ele.id + ".NaN")
+    })
+    $("#submit")[0].value = arr2Ans;
+
+    var st = ""
+    for (i in arr2Ans) {
+        if (arr2Ans[i].split(".")[1] !== "NaN") {
+            st += arr2Ans[i].split(".")[0];
+            st += " , "
+        }
+    }
+
+    $("#modalContent")[0].innerHTML = st;
+    clearInterval(kill)
+
+}
 
 
 window.addEventListener("load", function () {

@@ -22,6 +22,11 @@ const docRef = db.collection("Students");
 const Que = db.collection("Questions");
 const Int = db.collection("Intergers")
 
+var correct = 0;
+var incorrect = 0;
+var ans = [];
+var ans1 = [];
+
 app.get("/", function (req, res) {
     res.render("home")
 })
@@ -119,36 +124,12 @@ app.post("/question", function (req, res) {
         })
     })
 })
-app.post("/question1", function (req, res) {
-    const rollNo = req.body.rollNo.substring(0, 3).toUpperCase() + req.body.rollNo.slice(3)
-    var arr = []
 
-    docRef.doc(rollNo).get().then(function (snapshot) {
-
-        const hash = snapshot.data().Password
-        bcrypt.compare(req.body.password, hash, function (err, result) {
-            if (result) {
-                Int.get().then(function (doc) {
-                    for (i in doc.docs)
-                        arr.push(doc.docs[i].data())
-
-                    res.render("demo1", {
-                        data: arr,
-                        rollNo: rollNo
-                    })
-                })
-            } else {
-                res.render("home")
-            }
-        })
-    })
-})
 app.post("/submit", function (req, res) {
-    var correct = 0;
-    var incorrect = 0
+
     var arr = req.body.submit.split(",")
     arr.sort();
-    var ans = []
+
     Que.get().then(function (snapshot) {
         const d = snapshot.docs
         for (i in d) {
@@ -181,16 +162,57 @@ app.post("/submit", function (req, res) {
         docRef.doc(req.body.rollNo).collection("Answer").add({
             Data: ans
         })
-        res.render("display", {
-            data: ans,
-            rollNo: req.body.rollNo,
-            stat: {
-                right: correct,
-                wrong: incorrect
-            }
+
+        var arr1 = []
+        Int.get().then(function (doc) {
+            for (i in doc.docs)
+                arr1.push(doc.docs[i].data())
+
+            res.render("demo1", {
+                data: arr1,
+                rollNo: req.body.rollNo
+            })
         })
     })
+})
 
+app.post("/submitF", function (req, res) {
+    var arr3 = req.body.submit.split(",")
+    Int.get().then(function (snapshot) {
+        const d = snapshot.docs
+        for (i in d) {
+            const id = d[i].data().id
+            var temp = {
+                id: d[i].data().id,
+                title: d[i].data().title,
+                check: []
+            }
+            for (i in arr3) {
+                const answer = arr3[i].split(".")[1]
+                const id = arr3[i].split(".")[0]
+                if (id == temp.id) {
+                    if (answer == d[i].data().opt) {
+                        temp.check = {
+                            optBool: true,
+                            ans1: answer,
+                            ans2: d[i].data().opt
+                        }
+                        correct += 1;
+                    } else {
+                        temp.check = {
+                            optBool: false,
+                            ans1: answer,
+                            ans2: d[i].data().opt
+                        }
+                        incorrect += 1;
+                    }
+                }
+            }
+            ans1.push(temp)
+        }
+        console.log(ans1);
+
+    })
 })
 
 

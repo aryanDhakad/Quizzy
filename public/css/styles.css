@@ -33,6 +33,7 @@ h3 {
     box-sizing: border-box;
     border-radius: 25px;
     box-shadow: 0 0 8px 0 black;
+
 }
 
 .conatiner1 {
@@ -121,7 +122,7 @@ hr {
     border-radius: 25px;
     box-shadow: 0 0 8px 0 black;
     flex-flow: row wrap;
-
+    transition: .4s;
 }
 
 .Bool {

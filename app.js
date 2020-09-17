@@ -24,8 +24,12 @@ const Int = db.collection("Intergers")
 
 var correct = 0;
 var incorrect = 0;
+var correct1 = 0;
+var incorrect1 = 0;
 var ans = [];
 var ans1 = [];
+var rollNo = 0;
+var key1 = 1;
 
 app.get("/", function (req, res) {
     res.render("home")
@@ -33,7 +37,7 @@ app.get("/", function (req, res) {
 
 
 app.post("/register", function (req, res) {
-    const rollNo = req.body.St.substring(0, 3).toUpperCase() + req.body.St.slice(3)
+    rollNo = req.body.St.substring(0, 3).toUpperCase() + req.body.St.slice(3)
 
     bcrypt.hash(req.body.password, saltRound, function (err, hash) {
         {
@@ -54,7 +58,7 @@ app.get("/maker", function (req, res) {
 })
 app.post("/maker1", function (req, res) {
     var arr = req.body.Bool.split(",")
-    console.log(arr);
+
     var que = {
         id: req.body.no,
         title: req.body.title,
@@ -95,9 +99,9 @@ app.post("/maker2", function (req, res) {
 })
 
 app.post("/question", function (req, res) {
-    const rollNo = req.body.rollNo.substring(0, 3).toUpperCase() + req.body.rollNo.slice(3)
-    var arr = []
-    var arr1 = []
+    rollNo = req.body.rollNo.substring(0, 3).toUpperCase() + req.body.rollNo.slice(3)
+    var arr3 = []
+
     docRef.doc(rollNo).get().then(function (snapshot) {
 
         const hash = snapshot.data().Password
@@ -105,15 +109,11 @@ app.post("/question", function (req, res) {
             if (result) {
                 Que.get().then(function (doc) {
                     for (i in doc.docs)
-                        arr.push(doc.docs[i].data())
-                    Int.get().then(function (doc1) {
-                        for (i in doc.docs)
-                            arr1.push(doc.docs[i].data())
-                    })
+                        arr3.push(doc.docs[i].data())
+
 
                     res.render("demo", {
-                        data: arr,
-                        data1: arr1,
+                        data: arr3,
                         rollNo: rollNo
                     })
 
@@ -159,9 +159,6 @@ app.post("/submit", function (req, res) {
             }
             ans.push(temp);
         }
-        docRef.doc(req.body.rollNo).collection("Answer").add({
-            Data: ans
-        })
 
         var arr1 = []
         Int.get().then(function (doc) {
@@ -170,17 +167,20 @@ app.post("/submit", function (req, res) {
 
             res.render("demo1", {
                 data: arr1,
-                rollNo: req.body.rollNo
+                rollNo: rollNo
             })
         })
     })
 })
 
 app.post("/submitF", function (req, res) {
+
     var arr3 = req.body.submit.split(",")
+
     Int.get().then(function (snapshot) {
         const d = snapshot.docs
         for (i in d) {
+
             const id = d[i].data().id
             var temp = {
                 id: d[i].data().id,
@@ -194,27 +194,55 @@ app.post("/submitF", function (req, res) {
                     if (answer == d[i].data().opt) {
                         temp.check = {
                             optBool: true,
-                            ans1: answer,
-                            ans2: d[i].data().opt
+                            ans1: answer
+
                         }
-                        correct += 1;
+                        correct1 += 1;
                     } else {
                         temp.check = {
                             optBool: false,
-                            ans1: answer,
-                            ans2: d[i].data().opt
+                            ans1: answer
                         }
-                        incorrect += 1;
+                        incorrect1 += 1;
                     }
                 }
             }
             ans1.push(temp)
         }
-        console.log(ans1);
+
+        key1 += 1;
+        docRef.doc(rollNo).collection("Answer").doc(key1.toString()).set({
+            Data: ans,
+            Data1: ans1
+        })
+        res.redirect("/disp");
 
     })
 })
+app.get("/disp", function (req, res) {
 
+
+    res.render("display", {
+        data: ans,
+        rollNo: rollNo,
+        stat: {
+            right: correct,
+            wrong: incorrect
+        }
+    })
+})
+
+app.get("/disp1", function (req, res) {
+
+    res.render("display1", {
+        data: ans1,
+        rollNo: rollNo,
+        stat: {
+            right: correct1,
+            wrong: incorrect1
+        }
+    })
+})
 
 let port = process.env.PORT;
 if (port == null || port == "") {

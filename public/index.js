@@ -9,10 +9,12 @@ var a = 0,
 
 Array.from($(".nav")).forEach(id => {
     id.addEventListener("click", function () {
+
         var temp = (parseInt(curr) + parseInt(id.value)).toString()
+
         if (parseInt(temp) < parseInt(mxLength) + 1 && parseInt(temp) > 0) {
             Array.from($(".question")).forEach(element => {
-
+                console.log(element.id);
                 if (element.id === temp) {
 
                     element.style.display = "block";
@@ -31,20 +33,22 @@ Array.from($(".nav")).forEach(id => {
         else
             temp = temp;
         curr = temp
+
     })
 })
 
-$("#review")[0].addEventListener("click", function () {
+function doit() {
     Array.from($(".Any")).forEach(element => {
         if (element.id == curr) {
             element.classList.remove("btn-success")
             element.classList.add("btn-warning")
         }
     })
-})
+}
 
 Array.from($(".Any")).forEach(element => {
     element.addEventListener("click", function () {
+
         Array.from($(".question")).forEach(element => {
 
             if (element.id === this.id) {
@@ -58,10 +62,11 @@ Array.from($(".Any")).forEach(element => {
             } else
                 element.style.display = "none";
         })
+
     })
 })
 
-$("#check")[0].addEventListener("click", function () {
+function doit1() {
 
     var arr = Array.from($("input[type=checkbox]:checked"))
     var ans = []
@@ -80,22 +85,20 @@ $("#check")[0].addEventListener("click", function () {
     }
     $("#modalContent")[0].innerHTML = st;
 
-})
+}
 
-function doit() {
+function doit2() {
     var arr2 = Array.from($("input[type=text]"))
     var arr2Ans = []
     arr2.forEach(ele => {
         if (ele.value !== "")
             arr2Ans.push(ele.id + "." + ele.value)
-        else
-            arr2Ans.push(ele.id + ".NaN")
     })
     $("#submit")[0].value = arr2Ans;
 
     var st = ""
     for (i in arr2Ans) {
-        if (arr2Ans[i].split(".")[1] !== "NaN") {
+        if (arr2Ans[i].split(".")[1] !== "") {
             st += arr2Ans[i].split(".")[0];
             st += " , "
         }

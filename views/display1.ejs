@@ -30,42 +30,39 @@
         <% data.forEach(element => {%>
         <div class="question" id="<%= element.id %>" style="display: none">
             <h1 id="heading">Q<%= element.id %>. <%= element.title %> </h1>
-            <%for( i in element.check){%>
+
             <div class="options1">
-                <h3 class="mx-4"><%= element.check[i].optNo %> </h3>
-                <h3 class="mx-4"> <%= element.check[i].optCont %> </h3>
-                <%if(element.check[i].optBool){%>
+                <h3 class="mx-4"> Your Answer </h3>
+                <%if(element.check.optBool){%>
                 <span class="badge badge-success Bool mx-5">
-                    <h3 class="resultOpt"> <%= element.check[i].optBool %> </h3>
+                    <h3 class="resultOpt"> <%= element.check.ans1 %> </h3>
                 </span>
                 <%}else{%>
                 <span class="badge badge-danger Bool mx-5">
-                    <h3 class=""> <%= element.check[i].optBool %> </h3>
+                    <h3 class=""> <%= element.check.ans1 %> </h3>
                 </span>
                 <%}%>
-                
             </div>
-            <%}%>
+            
             </div>
             <%})%>
-        </div>
-
-    </div>
-    <div class="row">
-        <div class="col-4">
-
-            <button class="btn btn-primary nav" type="button" value="-1">BACK</button>
+            </div>
 
         </div>
+        <div class="row">
+            <div class="col-4">
 
-        <div class="col-4">
+                <button class="btn btn-primary nav" type="button" value="-1">BACK</button>
 
-            <button class="btn btn-primary nav" type="button" value="+1">NEXT</button>
+            </div>
+
+            <div class="col-4">
+
+                <button class="btn btn-primary nav" type="button" value="+1">NEXT</button>
+
+            </div>
 
         </div>
 
-    </div>
 
-
-
-    <%- include('partials/footer') %>
+        <%- include('partials/footer') %>

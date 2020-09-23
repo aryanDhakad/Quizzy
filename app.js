@@ -28,9 +28,11 @@ var correct1 = 0;
 var incorrect1 = 0;
 var ans = [];
 var ans1 = [];
+var arr3 = [];
+var arr1 = [];
 var rollNo = 0;
 var key1 = 1;
-var time = [10, 43];
+var time = [16, 41];
 
 app.get("/", function (req, res) {
     res.render("home")
@@ -101,7 +103,7 @@ app.post("/maker2", function (req, res) {
 
 app.post("/question", function (req, res) {
     rollNo = req.body.rollNo.substring(0, 3).toUpperCase() + req.body.rollNo.slice(3)
-    var arr3 = []
+    arr3 = []
     var d = new Date();
 
     if (d.getHours() >= time[0] && d.getMinutes() >= time[1]) {
@@ -114,12 +116,8 @@ app.post("/question", function (req, res) {
                         for (i in doc.docs)
                             arr3.push(doc.docs[i].data())
 
+                        res.redirect("/part1")
 
-                        res.render("demo", {
-                            time: time,
-                            data: arr3,
-                            rollNo: rollNo
-                        })
 
                     })
                 } else {
@@ -128,10 +126,17 @@ app.post("/question", function (req, res) {
             })
         })
     } else {
-        console.log("Not allowed");
+
         res.render("home")
     }
 
+})
+app.get("/part1", function (req, res) {
+    res.render("demo", {
+        time: time,
+        data: arr3,
+        rollNo: rollNo
+    })
 })
 
 app.post("/submit", function (req, res) {
@@ -169,19 +174,24 @@ app.post("/submit", function (req, res) {
             ans.push(temp);
         }
 
-        var arr1 = []
+        arr1 = [];
         Int.get().then(function (doc) {
             for (i in doc.docs)
                 arr1.push(doc.docs[i].data())
+            res.redirect("/part2")
 
-            res.render("demo1", {
-                time: time,
-                data: arr1,
-                rollNo: rollNo
-            })
         })
     })
 })
+
+app.get("/part2", function (req, res) {
+    res.render("demo1", {
+        time: time,
+        data: arr1,
+        rollNo: rollNo
+    })
+})
+
 
 app.post("/submitF", function (req, res) {
 

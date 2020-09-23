@@ -30,7 +30,7 @@ var ans = [];
 var ans1 = [];
 var rollNo = 0;
 var key1 = 1;
-var time = [10, 38];
+var time = [10, 43];
 
 app.get("/", function (req, res) {
     res.render("home")

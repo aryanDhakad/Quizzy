@@ -1,6 +1,9 @@
 <%- include('partials/header') %>
 <input type="hidden" id="mxLength" value=<%= data.length %>>
-<input type="hiddden" id="time" value=<%= time %>>
+<input type="hidden" id="time" value=<%= time %>>
+<div>
+    <h3>Login Time : <%= time[0] %> : <%= time[1]%></h3>
+</div>
 <div>
     <h2>Student ID : <%= rollNo %> </h2>
     <h3>TIMER : <span id="watch"></span> </h3>

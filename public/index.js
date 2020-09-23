@@ -128,9 +128,9 @@ function timer() {
     if (hrs > iHrs)
         min += 60;
 
-    m = (3 - (min - iMin)).toString() + " : ";
+    m = (10 - (min - iMin)).toString() + " : ";
     s = (60 - sec).toString();
-    if (parseInt(m) < 3) {
+    if (parseInt(m) < 0) {
         alert("Tme up");
         clearInterval(kill);
         document.getElementById("modalBtn").click();

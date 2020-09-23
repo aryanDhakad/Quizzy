@@ -1,6 +1,7 @@
 var curr = "1"
 const mxLength = $("#mxLength").val()
-
+const iMin = parseInt($("#time").val().split(",")[1])
+const iHrs = parseInt($("#time").val().split(",")[0])
 var a = 0,
     sec = 0,
     min = 0;
@@ -112,22 +113,21 @@ function doit2() {
 
 window.addEventListener("load", function () {
 
-    kill = setInterval(timer, 100);
+    kill = setInterval(timer, 1000);
 })
 
 
 function timer() {
-    a += 100;
-    if (a === 1000) {
-        sec += 1;
-        a = 0
-    }
-    if (sec === 60) {
-        min += 1;
-        sec = 0
-    }
-    m = (min > 10) ? (10 - min).toString() + " : " : (10 - min).toString() + " : "
-    s = (sec > 10) ? (60 - sec).toString() : (60 - sec).toString()
+
+    var t = new Date();
+    min = t.getMinutes();
+    hrs = t.getHours();
+    sec = t.getSeconds();
+    if (hrs > iHrs)
+        min += 60;
+
+    m = (10 - (min - iMin)).toString() + " : ";
+    s = (60 - sec).toString();
     $("#watch")[0].innerHTML = m + s;
 
 }

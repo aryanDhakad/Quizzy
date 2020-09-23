@@ -30,6 +30,7 @@ var ans = [];
 var ans1 = [];
 var rollNo = 0;
 var key1 = 1;
+var time = [];
 
 app.get("/", function (req, res) {
     res.render("home")
@@ -101,7 +102,8 @@ app.post("/maker2", function (req, res) {
 app.post("/question", function (req, res) {
     rollNo = req.body.rollNo.substring(0, 3).toUpperCase() + req.body.rollNo.slice(3)
     var arr3 = []
-
+    var d = new Date();
+    time = [d.getHours(), d.getMinutes()]
     docRef.doc(rollNo).get().then(function (snapshot) {
 
         const hash = snapshot.data().Password
@@ -113,6 +115,7 @@ app.post("/question", function (req, res) {
 
 
                     res.render("demo", {
+                        time: time,
                         data: arr3,
                         rollNo: rollNo
                     })
@@ -166,6 +169,7 @@ app.post("/submit", function (req, res) {
                 arr1.push(doc.docs[i].data())
 
             res.render("demo1", {
+                time: time,
                 data: arr1,
                 rollNo: rollNo
             })

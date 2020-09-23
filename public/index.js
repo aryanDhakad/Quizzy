@@ -1,7 +1,9 @@
 var curr = "1"
 const mxLength = $("#mxLength").val()
+
 const iMin = parseInt($("#time").val().split(",")[1])
 const iHrs = parseInt($("#time").val().split(",")[0])
+
 var a = 0,
     sec = 0,
     min = 0;
@@ -15,7 +17,7 @@ Array.from($(".nav")).forEach(id => {
 
         if (parseInt(temp) < parseInt(mxLength) + 1 && parseInt(temp) > 0) {
             Array.from($(".question")).forEach(element => {
-                console.log(element.id);
+
                 if (element.id === temp) {
 
                     element.style.display = "block";
@@ -112,8 +114,8 @@ function doit2() {
 
 
 window.addEventListener("load", function () {
-
-    kill = setInterval(timer, 1000);
+    if (iHrs > -1)
+        kill = setInterval(timer, 1000);
 })
 
 
@@ -126,8 +128,14 @@ function timer() {
     if (hrs > iHrs)
         min += 60;
 
-    m = (10 - (min - iMin)).toString() + " : ";
+    m = (3 - (min - iMin)).toString() + " : ";
     s = (60 - sec).toString();
+    if (parseInt(m) < 3) {
+        alert("Tme up");
+        clearInterval(kill);
+        document.getElementById("modalBtn").click();
+        document.getElementById("f1").click();
+    }
     $("#watch")[0].innerHTML = m + s;
 
 }

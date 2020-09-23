@@ -50,7 +50,7 @@
             </div>
             <!-- Button trigger modal -->
             <button class="btn btn-primary" onclick="doit1()" type="button" data-toggle="modal"
-                data-target="#modalCenter">
+                data-target="#modalCenter" id="modalBtn">
                 Submit</button>
 
 
@@ -70,10 +70,10 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <form action="/submit" method="post" name="f1" class="f1">
+                            <form action="/submit" method="post">
                                 <input type="hidden" name="rollNo" value=<%= rollNo %>>
                                 <input type="hidden" name="submit" id="submit" value="">
-                                <button class="btn btn-primary" type="submit">Go</button>
+                                <button class="btn btn-primary" type="submit" id="f1">Go</button>
                             </form>
                         </div>
                     </div>

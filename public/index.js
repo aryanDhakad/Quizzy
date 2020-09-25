@@ -128,7 +128,7 @@ function timer() {
     if (hrs > iHrs)
         min += 60;
 
-    m = (30 - (min - iMin)).toString() + " : ";
+    m = (15 - (min - iMin)).toString() + " : ";
     s = (60 - sec).toString();
     if (parseInt(m) < 0) {
         alert("Tme up");

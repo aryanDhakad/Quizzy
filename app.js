@@ -32,7 +32,7 @@ var arr3 = [];
 var arr1 = [];
 var rollNo = 0;
 var key1 = 1;
-var time = [16, 41];
+var time = [21, 0];
 
 app.get("/", function (req, res) {
     res.render("home")

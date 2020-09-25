@@ -2,98 +2,99 @@
 <input type="hidden" id="mxLength" value=<%= data.length %>>
 <input type="hidden" id="time" value=<%= time %>>
 <div>
-    <h3>Login Time : <%= time[0] %> : <%= time[1]%></h3>
+    <h1 class="bg-info p-3">Student ID : <%= rollNo %></h1>
+    <h3 class="bg-danger text-white cust">TIMER => <span id="watch"></span> </h3>
 </div>
-<div>
-    <h2>Student ID : <%= rollNo %> </h2>
-    <h3>TIMER : <span id="watch"></span> </h3>
-</div>
-<div class="row">
-    <div class="col-2">
-        <div class="container1">
-            <% data.forEach(element => {%>
-            <button class="btn btn-primary Any" type="button" id=<%= element.id %>><%= element.id %></button>
-            <%})%>
-        </div>
-    </div>
-
-    <div class="col-10">
-        <% data.forEach(element => {%>
-        <div class="question" id="<%= element.id %>" style="display: none">
-            <h1 id="heading">Q<%= element.id %>. <%= element.title %> </h1>
-            <%for( i in element.options){%>
-            <div class="options">
-                <label><%= i %> </label>
-                <input type="checkbox" class="bool2" id="<%= element.id %>.<%= i %>">
-                <h2> <%= element.options[i].cont %> </h2>
+<div class="ans-area">
+    <div class="row">
+        <div class="col-2">
+            <div class="container1">
+                <% data.forEach(element => {%>
+                <button class="btn btn-primary Any" type="button" id=<%= element.id %>><%= element.id %></button>
+                <%})%>
             </div>
-            <%}%>
         </div>
-        
+
+        <div class="col-10">
+            <% data.forEach(element => {%>
+            <div class="question" id="<%= element.id %>" style="display: none">
+                <h1 id="heading">Q<%= element.id %>. <%= element.title %> </h1>
+                <%for( i in element.options){%>
+                <div class="options">
+                    <label><%= i %> </label>
+                    <input type="checkbox" class="bool2" id="<%= element.id %>.<%= i %>">
+                    <h2> <%= element.options[i].cont %> </h2>
+                </div>
+                <%}%>
+        </div>
         <%})%>
 
-            <div class="row">
-                <div class="col-4">
+                <div class="row">
+                    <div class="col-4">
 
-                    <button class="btn btn-primary nav" type="button" value="-1">BACK</button>
+                        <button class="btn btn-primary nav" type="button" value="-1">BACK</button>
 
-                </div>
-                <div class="col-4">
-
-                    <button class="btn btn-primary " onclick="doit()" type="button"> ....Mark For Review .... </button>
-
-                </div>
-
-                <div class="col-4">
-
-                    <button class="btn btn-primary nav" type="button" value="+1">NEXT</button>
-
-                </div>
-
-            </div>
-            <!-- Button trigger modal -->
-            <button class="btn btn-primary" onclick="doit1()" type="button" data-toggle="modal"
-                data-target="#modalCenter" id="modalBtn">
-                Submit</button>
-
-
-            <!-- Modal -->
-            <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">SUBMIT AND EXIT!</h5>
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <h3>Answered : </h3>
-                            <h4 id="modalContent"></h4>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <form action="/submit" method="post">
-                                <input type="hidden" name="rollNo" value=<%= rollNo %>>
-                                <input type="hidden" name="submit" id="submit" value="">
-                                <button class="btn btn-primary" type="submit" id="f1">Go</button>
-                            </form>
-                        </div>
                     </div>
+                    <div class="col-4">
+
+                        <button class="btn btn-primary " onclick="doit()" type="button"> ....Mark For Review ....
+                        </button>
+
+                    </div>
+
+                    <div class="col-4">
+
+                        <button class="btn btn-primary nav" type="button" value="+1">NEXT</button>
+
+                    </div>
+
                 </div>
             </div>
-
         </div>
+    </div>
+</div>
+<button class="btn btn-primary d-block w-25 mx-auto my-3" onclick="doit1()" type="button" data-toggle="modal"
+    data-target="#modalCenter" id="modalBtn">
+    Submit</button>
 
-        <div class="container1">
 
-            <h3>Important : If in part 1, click submit after answering to access Part 2</h3>
-            <br>
-            <h4>Important : If want to access Part 1, use browser navigation(Also hit submit so save changes)</h4>
-            <br>
-            <h4>! Be in Part 2 when timer Ends, else answers for Part 2 Will not be recorded ! </h4>
+<!-- Modal -->
+<div class="modal fade" id="modalCenter" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">SUBMIT AND EXIT!</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3>Answered : </h3>
+                <h4 id="modalContent"></h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <form action="/submit" method="post">
+                    <input type="hidden" name="rollNo" value=<%= rollNo %>>
+                    <input type="hidden" name="submit" id="submit" value="">
+                    <button class="btn btn-primary" type="submit" id="f1">Go</button>
+                </form>
+            </div>
         </div>
+    </div>
+</div>
+
+<div class="list-group">
+
+    <li class="list-group-item list-group-item-dark">Important : If want to access Part 1, use browser
+        navigation(Also hit submit so
+        save changes) </li>
+    <li class="list-group-item list-group-item-danger"> ! Be in Part 2 when timer Ends, else answers for Part 2
+        Will not be recorded !
+    </li>
+
+</div>
 
 
 
-        <%- include('partials/footer') %>
+<%- include('partials/footer') %>

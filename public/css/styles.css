@@ -9,6 +9,9 @@ input[type="checkbox"] {
 #heading {
     text-align: left;
     padding: 5px 20px;
+
+    color: #1a1a2e;
+    border-radius: 25px;
 }
 
 input[type="checkbox"]:checked::before {
@@ -19,9 +22,25 @@ input[type="checkbox"]:checked::before {
 }
 
 /* DEMO PAGE */
+.cust {
+    display: block;
+    width: 50%;
+    height: 50px;
+    margin: 10px auto;
+    border-radius: 35px;
+}
+
 h2,
 h3 {
     display: inline;
+}
+
+.ans-area {
+    border-radius: 35px;
+    height: 430px;
+    padding: 30px;
+    width: 100%;
+    background-color: #e8e8e8;
 }
 
 .options {
@@ -33,7 +52,15 @@ h3 {
     box-sizing: border-box;
     border-radius: 25px;
     box-shadow: 0 0 8px 0 black;
+    background-color: #f6f6f6;
 
+}
+
+.nav {
+    display: inline-block;
+    width: 160px;
+    border-radius: 35px;
+    margin: 10px auto;
 }
 
 .conatiner1 {
@@ -44,7 +71,7 @@ h3 {
 .Any {
     margin: 10px 10px;
     width: 80px;
-    height: 20px;
+    height: 30px;
     display: block;
 }
 
@@ -53,11 +80,6 @@ form {
     padding: 20px 30px;
     margin: 10px auto;
     text-align: center;
-}
-
-
-.Any {
-    height: 30px
 }
 
 .btn {

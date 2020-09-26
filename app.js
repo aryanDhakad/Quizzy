@@ -31,6 +31,7 @@ var ans1 = [];
 var arr3 = [];
 var arr1 = [];
 var rollNo = 0;
+var key = 0;
 
 
 app.get("/", function (req, res) {
@@ -140,6 +141,8 @@ app.post("/submit", function (req, res) {
     var arr = req.body.submit.split(",")
     arr.sort();
     ans = [];
+    correct = 0;
+    incorrect = 0;
     Que.get().then(function (snapshot) {
         const d = snapshot.docs
         for (i in d) {
@@ -203,6 +206,8 @@ app.post("/submitF", function (req, res) {
 
     var arr3 = req.body.submit.split(",")
     ans1 = []
+    correct1 = 0;
+    incorrect1 = 0;
     Int.get().then(function (snapshot) {
         const d = snapshot.docs
         for (i in d) {
@@ -237,8 +242,8 @@ app.post("/submitF", function (req, res) {
             ans1.push(temp)
         }
 
-
-        docRef.doc(rollNo).collection("Answer").add({
+        key += 1;
+        docRef.doc(rollNo).collection("Answer").doc(key.toString()).set({
             Data: ans,
             Data1: ans1
         })

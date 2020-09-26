@@ -31,8 +31,8 @@ var ans1 = [];
 var arr3 = [];
 var arr1 = [];
 var rollNo = 0;
-var key1 = 1;
-var time = [2, 30];
+
+var time = [14, 30];
 
 app.get("/", function (req, res) {
     res.render("home")
@@ -230,8 +230,8 @@ app.post("/submitF", function (req, res) {
             ans1.push(temp)
         }
 
-        key1 += 1;
-        docRef.doc(rollNo).collection("Answer").doc(key1.toString()).set({
+
+        docRef.doc(rollNo).collection("Answer").doc("1").set({
             Data: ans,
             Data1: ans1
         })

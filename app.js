@@ -31,8 +31,8 @@ var ans1 = [];
 var arr3 = [];
 var arr1 = [];
 var rollNo = 0;
-
-var time = [13, 12];
+var da = new Date();
+var time = [da.getHours(), da.getMinutes()];
 
 app.get("/", function (req, res) {
     res.render("home")

@@ -131,7 +131,8 @@ function timer() {
     m = (20 - (min - iMin)).toString() + " : ";
     s = (60 - sec).toString();
     if (parseInt(m) < 0) {
-        alert(iMin, iHrs);
+        alert(iMin);
+        alert(iHrs)
         alert(min)
         clearInterval(kill);
         document.getElementById("modalBtn").click();

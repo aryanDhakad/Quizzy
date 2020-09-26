@@ -139,7 +139,7 @@ app.post("/submit", function (req, res) {
 
     var arr = req.body.submit.split(",")
     arr.sort();
-
+    ans = [];
     Que.get().then(function (snapshot) {
         const d = snapshot.docs
         for (i in d) {
@@ -202,7 +202,7 @@ app.get("/part2", function (req, res) {
 app.post("/submitF", function (req, res) {
 
     var arr3 = req.body.submit.split(",")
-
+    ans1 = []
     Int.get().then(function (snapshot) {
         const d = snapshot.docs
         for (i in d) {

@@ -43,34 +43,35 @@
                     <span class="badge badge-danger Bool mx-5">
                         <h3 class=""> <%= element.check.ans1 %> </h3>
                     </span>
+
                     <%}%>
             </div>
-            
-            </div>
-            <%})%>
+            <h3>Correct Answer : <%= element.check.ans2 %> </h3>
                 </div>
+                <%})%>
             </div>
         </div>
+    </div>
 
-        <div class="row">
-            <div class="col-4 offset-2">
+    <div class="row">
+        <div class="col-4 offset-2">
 
-                <button class="btn btn-primary nav" type="button" value="-1">BACK</button>
-
-            </div>
-
-            <div class="col-4">
-
-                <button class="btn btn-primary nav" type="button" value="+1">NEXT</button>
-
-            </div>
+            <button class="btn btn-primary nav" type="button" value="-1">BACK</button>
 
         </div>
-        <div class="col-4 mx-auto">
-            <form action="/" method="get">
-                <button class="btn btn-primary nav" type="submit">End Test </button>
-            </form>
+
+        <div class="col-4">
+
+            <button class="btn btn-primary nav" type="button" value="+1">NEXT</button>
+
         </div>
 
+    </div>
+    <div class="col-4 mx-auto">
+        <form action="/" method="get">
+            <button class="btn btn-primary nav" type="submit">End Test </button>
+        </form>
+    </div>
 
-        <%- include('partials/footer') %>
+
+    <%- include('partials/footer') %>

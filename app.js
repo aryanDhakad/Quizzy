@@ -214,14 +214,16 @@ app.post("/submitF", function (req, res) {
                     if (answer == d[i].data().opt) {
                         temp.check = {
                             optBool: true,
-                            ans1: answer
+                            ans1: answer,
+                            ans2: answer
 
                         }
                         correct1 += 1;
                     } else {
                         temp.check = {
                             optBool: false,
-                            ans1: answer
+                            ans1: answer,
+                            ans2: d[i].data().opt
                         }
                         incorrect1 += 1;
                     }

@@ -31,8 +31,7 @@ var ans1 = [];
 var arr3 = [];
 var arr1 = [];
 var rollNo = 0;
-var dd = new Date();
-var time = [dd.getHours(), dd.getMinutes()];
+
 
 app.get("/", function (req, res) {
     res.render("home")
@@ -104,36 +103,33 @@ app.post("/maker2", function (req, res) {
 app.post("/question", function (req, res) {
     rollNo = req.body.rollNo.substring(0, 3).toUpperCase() + req.body.rollNo.slice(3)
     arr3 = []
-    var d = new Date();
-
-    if (d.getHours() >= time[0] && d.getMinutes() >= time[1]) {
-        docRef.doc(rollNo).get().then(function (snapshot) {
-
-            const hash = snapshot.data().Password
-            bcrypt.compare(req.body.password, hash, function (err, result) {
-                if (result) {
-                    Que.get().then(function (doc) {
-                        for (i in doc.docs)
-                            arr3.push(doc.docs[i].data())
-
-                        res.redirect("/part1")
 
 
-                    })
-                } else {
-                    res.render("home")
-                }
-            })
+
+    docRef.doc(rollNo).get().then(function (snapshot) {
+
+        const hash = snapshot.data().Password
+        bcrypt.compare(req.body.password, hash, function (err, result) {
+            if (result) {
+                Que.get().then(function (doc) {
+                    for (i in doc.docs)
+                        arr3.push(doc.docs[i].data())
+
+                    res.redirect("/part1")
+
+
+                })
+            } else {
+                res.render("home")
+            }
         })
-    } else {
+    })
 
-        res.render("home")
-    }
 
 })
 app.get("/part1", function (req, res) {
     res.render("demo", {
-        time: time,
+
         data: arr3,
         rollNo: rollNo
     })
@@ -186,7 +182,7 @@ app.post("/submit", function (req, res) {
 
 app.get("/part2", function (req, res) {
     res.render("demo1", {
-        time: time,
+
         data: arr1,
         rollNo: rollNo
     })
@@ -245,7 +241,7 @@ app.get("/disp", function (req, res) {
 
 
     res.render("display", {
-        time: [-1, -1],
+
         data: ans,
         rollNo: rollNo,
         stat: {
@@ -258,7 +254,7 @@ app.get("/disp", function (req, res) {
 app.get("/disp1", function (req, res) {
 
     res.render("display1", {
-        time: [-1, -1],
+
         data: ans1,
         rollNo: rollNo,
         stat: {

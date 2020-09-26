@@ -1,12 +1,11 @@
 var curr = "1"
 const mxLength = $("#mxLength").val()
 
-const iMin = parseInt($("#time").val().split(",")[1])
-const iHrs = parseInt($("#time").val().split(",")[0])
 
 var a = 0,
     sec = 0,
     min = 0;
+m = 0;
 
 
 
@@ -109,35 +108,5 @@ function doit2() {
 
     $("#modalContent")[0].innerHTML = st;
     clearInterval(kill)
-
-}
-
-
-window.addEventListener("load", function () {
-    if (iHrs > -1)
-        kill = setInterval(timer, 1000);
-})
-
-
-function timer() {
-
-    var t = new Date();
-    min = t.getMinutes();
-    hrs = t.getHours();
-    sec = t.getSeconds();
-    if (hrs > iHrs)
-        min += 60;
-
-    m = (20 - (min - iMin)).toString() + " : ";
-    s = (60 - sec).toString();
-    if (parseInt(m) < 0) {
-        alert(iMin);
-        alert(iHrs)
-        alert(min)
-        clearInterval(kill);
-        document.getElementById("modalBtn").click();
-        document.getElementById("f1").click();
-    }
-    $("#watch")[0].innerHTML = m + s;
 
 }

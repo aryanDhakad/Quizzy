@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
 <input type="hidden" id="mxLength" value=<%= data.length %>>
-<input type="hidden" id="time" value=<%= time %>>
+
 <div>
     <h1 class="bg-info p-3 ">Student ID : <%= rollNo %></h1>
     <h3 class="bg-danger text-white cust">TIMER => <span id="watch"></span> </h3>
@@ -90,5 +90,33 @@
     </li>
 
 </div>
+
+<script>
+    window.addEventListener("load", function () {
+
+        kill = setInterval(timer, 1000);
+    })
+
+
+    function timer() {
+        a += 1;
+        if (a == 60) {
+            min += 1;
+            a = 0;
+        }
+
+        m = ((6 - min) > 10) ? (6 - min).toString() + " : " : "0" + (6 - min).toString() + " : ";
+        sec = ((60 - a) > 10) ? (60 - a).toString() : "0" + (60 - a).toString();
+
+        if (parseInt(m) < 0) {
+
+            clearInterval(kill);
+            document.getElementById("modalBtn").click();
+            document.getElementById("f1").click();
+        }
+        $("#watch")[0].innerHTML = m + sec;
+
+    }
+</script>
 
 <%- include('partials/footer') %>

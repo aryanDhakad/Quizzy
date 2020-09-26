@@ -44,31 +44,46 @@
                         <h3 class=""> <%= element.check[i].optBool %> </h3>
                     </span>
                     <%}%>
-                
             </div>
             <%}%>
-                </div>
-                <%})%>
+                    <h1>Correct Answer : </h1>
+                    <%for( i in element.corr){%>
+                    <div class="options1">
+                        <h3 class="mx-4"><%= element.corr[i].optNo %> </h3>
+                        <h3 class="mx-4"> <%= element.corr[i].optCont %> </h3>
+                        <%if(element.corr[i].optBool){%>
+                        <span class="badge badge-success Bool mx-5">
+                            <h3 class="resultOpt"> <%= element.corr[i].optBool %> </h3>
+                        </span>
+                        <%}else{%>
+                        <span class="badge badge-danger Bool mx-5">
+                            <h3 class=""> <%= element.corr[i].optBool %> </h3>
+                        </span>
+                        <%}%>
             </div>
+            <%}%>
+                    </div>
+                    <%})%>
+                </div>
 
+            </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-4 offset-2">
+    <div class="row">
+        <div class="col-4 offset-2">
 
-        <button class="btn btn-primary nav" type="button" value="-1">BACK</button>
+            <button class="btn btn-primary nav" type="button" value="-1">BACK</button>
+
+        </div>
+
+        <div class="col-4">
+
+            <button class="btn btn-primary nav" type="button" value="+1">NEXT</button>
+
+        </div>
 
     </div>
 
-    <div class="col-4">
-
-        <button class="btn btn-primary nav" type="button" value="+1">NEXT</button>
-
-    </div>
-
-</div>
 
 
-
-<%- include('partials/footer') %>
+    <%- include('partials/footer') %>

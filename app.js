@@ -147,7 +147,8 @@ app.post("/submit", function (req, res) {
             var temp = {
                 id: d[i].data().id,
                 title: d[i].data().title,
-                check: []
+                check: [],
+                corr: []
             }
             const opt = d[i].data().options
             for (j in opt) {
@@ -164,6 +165,15 @@ app.post("/submit", function (req, res) {
                         incorrect += 1;
                     }
                     temp.check.push(temp2)
+                }
+                if (opt[j].bool) {
+                    var temp3 = {
+                        optNo: j,
+                        optCont: opt[j].cont,
+                        optBool: opt[j].bool
+                    }
+
+                    temp.corr.push(temp3)
                 }
 
             }
@@ -201,7 +211,8 @@ app.post("/submitF", function (req, res) {
             var temp = {
                 id: d[i].data().id,
                 title: d[i].data().title,
-                check: []
+                check: [],
+                ans2: d[i].data().opt
             }
             for (i in arr3) {
                 const answer = arr3[i].split(".")[1]
@@ -210,16 +221,14 @@ app.post("/submitF", function (req, res) {
                     if (answer == d[i].data().opt) {
                         temp.check = {
                             optBool: true,
-                            ans1: answer,
-                            ans2: answer
+                            ans1: answer
 
                         }
                         correct1 += 1;
                     } else {
                         temp.check = {
                             optBool: false,
-                            ans1: answer,
-                            ans2: d[i].data().opt
+                            ans1: answer
                         }
                         incorrect1 += 1;
                     }

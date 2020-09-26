@@ -32,7 +32,7 @@ var arr3 = [];
 var arr1 = [];
 var rollNo = 0;
 
-var time = [13, 5];
+var time = [13, 12];
 
 app.get("/", function (req, res) {
     res.render("home")
@@ -106,7 +106,7 @@ app.post("/question", function (req, res) {
     arr3 = []
     var d = new Date();
 
-    if (d.getHours() >= time[0] && d.getMinutes() >= time[1]) {
+    if (1) {
         docRef.doc(rollNo).get().then(function (snapshot) {
 
             const hash = snapshot.data().Password

@@ -238,7 +238,7 @@ app.post("/submitF", function (req, res) {
         }
 
 
-        docRef.doc(rollNo).collection("Answer").doc("1").set({
+        docRef.doc(rollNo).collection("Answer").add({
             Data: ans,
             Data1: ans1
         })

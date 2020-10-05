@@ -2,13 +2,6 @@ var curr = "1"
 const mxLength = $("#mxLength").val()
 
 
-var a = 0,
-    sec = 0,
-    min = 0;
-m = 0;
-
-
-
 Array.from($(".nav")).forEach(id => {
     id.addEventListener("click", function () {
 
@@ -75,7 +68,7 @@ function doit1() {
     var ans1 = new Set()
     arr.forEach(element => {
         ans.push(element.id)
-        ans1.add(element.id.substring(0, 1))
+        ans1.add(element.id.split(".")[0])
     })
     var set1 = Array.from(ans1);
     $("#submit")[0].value = ans;

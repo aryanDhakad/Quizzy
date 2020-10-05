@@ -56,7 +56,7 @@ app.post("/register", function (req, res) {
 
 });
 
-app.get("/maker", function (req, res) {
+app.get("/maker1179", function (req, res) {
     res.render("Maker")
 })
 app.post("/maker1", function (req, res) {

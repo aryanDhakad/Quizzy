@@ -96,6 +96,10 @@
 </div>
 
 <script>
+    var a = 0,
+        sec = 0,
+        min = 0;
+    m = 0;
     window.addEventListener("load", function () {
 
         kill = setInterval(timer, 1000);
@@ -103,16 +107,17 @@
 
 
     function timer() {
+
         a += 1;
         if (a == 60) {
             min += 1;
             a = 0;
         }
 
-        m = ((6 - min) > 10) ? (6 - min).toString() + " : " : "0" + (6 - min).toString() + " : ";
-        sec = ((60 - a) > 10) ? (60 - a).toString() : "0" + (60 - a).toString();
+        m = ((6 - min) >= 10) ? (6 - min).toString() + " : " : "0" + (6 - min).toString() + " : ";
+        sec = ((60 - a) >= 10) ? (60 - a).toString() : "0" + (60 - a).toString();
 
-        if (parseInt(m) < 0) {
+        if (min === 6 && a === 59) {
 
             clearInterval(kill);
             document.getElementById("modalBtn").click();

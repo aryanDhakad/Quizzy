@@ -8,14 +8,7 @@
         <span class="badge badge-danger"><%= stat.wrong %></span>
         <span class="badge badge-primary">Total : <%= stat.right - stat.wrong %> </span></h1>
 </div>
-<div style="background-color: #a6a6a4;">
-    <form action="/disp" method="get">
-        <button class="btn btn-primary shadow">MCQ Section </button>
-    </form>
-    <form action="/disp1" method="get">
-        <button class="btn btn-primary shadow">Intergers Section </button>
-    </form>
-</div>
+
 <div class="ans-area">
     <div class="row">
         <div class="col-2">
@@ -31,6 +24,7 @@
             <% data.forEach(element => {%>
             <div class="question" id="<%= element.id %>" style="display: none">
                 <h1 id="heading">Q<%= element.id %>. <%= element.title %> </h1>
+                <h1>Your Answer : </h1>
                 <%for( i in element.check){%>
                 <div class="options1">
                     <h3 class="mx-4"><%= element.check[i].optNo %> </h3>
@@ -72,16 +66,22 @@
     <div class="row">
         <div class="col-4 offset-2">
 
-            <button class="btn btn-primary nav" type="button" value="-1">BACK</button>
+            <button class="btn btn-primary nav btn-lg" type="button" value="-1">BACK</button>
 
         </div>
 
         <div class="col-4">
 
-            <button class="btn btn-primary nav" type="button" value="+1">NEXT</button>
+            <button class="btn btn-primary nav btn-lg" type="button" value="+1">NEXT</button>
 
         </div>
 
+    </div>
+
+    <div class="col-4 mx-auto">
+        <form action="/" method="get">
+            <button class="btn btn-primary nav btn-lg" type="submit">End Test </button>
+        </form>
     </div>
 
 

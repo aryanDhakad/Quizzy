@@ -1,8 +1,7 @@
 const express = require("express");
 const ejs = require("ejs");
 const app = express();
-const bcrypt = require("bcrypt");
-const saltRound = 2;
+
 app.use(express.urlencoded({
     extended: true
 }))
@@ -20,41 +19,24 @@ admin.initializeApp({
 const db = admin.firestore();
 const docRef = db.collection("Students");
 const Que = db.collection("Questions");
-const Int = db.collection("Intergers")
+
 
 var correct = 0;
 var incorrect = 0;
-var correct1 = 0;
-var incorrect1 = 0;
+
 var ans = [];
-var ans1 = [];
+
 var arr3 = [];
-var arr1 = [];
-var rollNo = 0;
+
+var name = '';
+var email = '';
 var key = 0;
+
 
 
 app.get("/", function (req, res) {
     res.render("home")
 })
-
-
-app.post("/register", function (req, res) {
-    rollNo = req.body.St.substring(0, 3).toUpperCase() + req.body.St.slice(3)
-
-    bcrypt.hash(req.body.password, saltRound, function (err, hash) {
-        {
-            docRef.doc(rollNo).set({
-                Name: req.body.name1,
-                Password: hash
-            })
-        }
-    })
-
-    res.render("home")
-
-
-});
 
 app.get("/maker1179", function (req, res) {
     res.render("Maker")
@@ -101,38 +83,29 @@ app.post("/maker2", function (req, res) {
     res.render("Maker")
 })
 
-app.post("/question", function (req, res) {
-    rollNo = req.body.rollNo.substring(0, 3).toUpperCase() + req.body.rollNo.slice(3)
-    arr3 = []
 
+app.post("/login", function (req, res) {
+    name = req.body.name;
+    email = req.body.email;
+    var d = new Date()
+    time = d.getTime();
 
-
-    docRef.doc(rollNo).get().then(function (snapshot) {
-
-        const hash = snapshot.data().Password
-        bcrypt.compare(req.body.password, hash, function (err, result) {
-            if (result) {
-                Que.get().then(function (doc) {
-                    for (i in doc.docs)
-                        arr3.push(doc.docs[i].data())
-
-                    res.redirect("/part1")
-
-
-                })
-            } else {
-                res.render("home")
-            }
-        })
+    docRef.doc(req.body.email).set({
+        Name: name,
+        Email: email
     })
-
-
+    arr3 = []
+    Que.get().then(function (doc) {
+        for (i in doc.docs)
+            arr3.push(doc.docs[i].data())
+        res.redirect("/part1")
+    })
 })
+
 app.get("/part1", function (req, res) {
     res.render("demo", {
-
         data: arr3,
-        rollNo: rollNo
+        rollNo: name
     })
 })
 
@@ -183,81 +156,26 @@ app.post("/submit", function (req, res) {
             ans.push(temp);
         }
 
-        arr1 = [];
-        Int.get().then(function (doc) {
-            for (i in doc.docs)
-                arr1.push(doc.docs[i].data())
-            res.redirect("/part2")
-
-        })
-    })
-})
-
-app.get("/part2", function (req, res) {
-    res.render("demo1", {
-
-        data: arr1,
-        rollNo: rollNo
-    })
-})
-
-
-app.post("/submitF", function (req, res) {
-
-    var arr3 = req.body.submit.split(",")
-    ans1 = []
-    correct1 = 0;
-    incorrect1 = 0;
-    Int.get().then(function (snapshot) {
-        const d = snapshot.docs
-        for (i in d) {
-
-            const id = d[i].data().id
-            var temp = {
-                id: d[i].data().id,
-                title: d[i].data().title,
-                check: [],
-                ans2: d[i].data().opt
-            }
-            for (i in arr3) {
-                const answer = arr3[i].split(".")[1]
-                const id = arr3[i].split(".")[0]
-                if (id == temp.id) {
-                    if (answer == d[i].data().opt) {
-                        temp.check = {
-                            optBool: true,
-                            ans1: answer
-
-                        }
-                        correct1 += 1;
-                    } else {
-                        temp.check = {
-                            optBool: false,
-                            ans1: answer
-                        }
-                        incorrect1 += 1;
-                    }
-                }
-            }
-            ans1.push(temp)
-        }
 
         key += 1;
-        docRef.doc(rollNo).collection("Answer").doc(key.toString()).set({
-            Data: ans,
-            Data1: ans1
+
+        docRef.doc(email).collection("Answer").doc(key.toString()).set({
+            Ans: ans,
+            Stat: correct - incorrect
         })
         res.redirect("/disp");
 
     })
 })
+
+
 app.get("/disp", function (req, res) {
 
 
     res.render("display", {
 
         data: ans,
-        rollNo: rollNo,
+        rollNo: name,
         stat: {
             right: correct,
             wrong: incorrect
@@ -265,18 +183,7 @@ app.get("/disp", function (req, res) {
     })
 })
 
-app.get("/disp1", function (req, res) {
 
-    res.render("display1", {
-
-        data: ans1,
-        rollNo: rollNo,
-        stat: {
-            right: correct1,
-            wrong: incorrect1
-        }
-    })
-})
 
 let port = process.env.PORT;
 if (port == null || port == "") {

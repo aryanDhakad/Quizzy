@@ -7,28 +7,19 @@
 
 <div class="row">
     <div class="col-6">
-
-        <div class="card">
-            <div class="card-header">
-                Registeration
-            </div>
-            <div class="card-body">
-                <form action="/register" method="post">
-                    <label for="St">Enter Roll No. : </label>
-                    <input type="text" name="St" placeholder="Enter ">
-                    <br>
-                    <label for="name1">Name of Student : </label>
-                    <input type="text" name="name1" placeholder="Name ">
-                    <br>
-                    <label for="password">Password : </label>
-                    <input type="text" name="password" placeholder="Password">
-            </div>
-            <div class="card-footer">
-                <button type="submit" name="btn1" class="btn btn-primary rounded shadow homeBtn"> Register </button>
-                </form>
-            </div>
+        <div>
+            <h3>Color Values of Buttons</h3>
+            <br>
+            <label for="nv">Not Visited : </label>
+            <button class="btn btn-primary" name="nv">Not Visited</button>
+            <br>
+            <label for="vi">Visited : </label>
+            <button class="btn btn-success" name="vi">Visited</button>
+            <br>
+            <label for="mk">Marked For Review : </label>
+            <button class="btn btn-warning" name="mk">Marked For Review </button>
+            <br>
         </div>
-
         <br>
     </div>
     <div class="col-6">
@@ -37,15 +28,15 @@
             <div class="card-header">LOGIN</div>
             <div class="card-body">
 
-                <form action="/question" method="post">
-                    <label>Student Roll No :</label>
-                    <input type="text" name="rollNo" placeholder="RollNo ">
+                <form action="/login" method="post">
+                    <label>Student Name : </label>
+                    <input type="text" name="name" placeholder="Akshay kumar">
                     <br>
-                    <label for="passowrd">Password: </label>
-                    <input type="text" name="password" placeholder="password">
+                    <label for="passowrd">Email : </label>
+                    <input type="text" name="email" placeholder="khiladi786@email.com">
             </div>
             <div class="card-footer">
-                <button type="submit" name="btn1" class="btn btn-primary rounded shadow homeBtn"> Start </button>
+                <button type="submit" name="btn1" class="btn btn-lg btn-primary rounded shadow homeBtn"> Start </button>
                 </form>
             </div>
             <br>
@@ -54,22 +45,8 @@
     </div>
 
 </div>
-<!-- <form method="get" action="/maker">
-    <button type="submit" name="btnM" class="btn btn-primary  rounded shadow homeBtn">MAKER</button>
-</form> -->
-<div>
-    <h3>Color Values of Buttons</h3>
-    <br>
-    <label for="nv">Not Visited : </label>
-    <button class="btn btn-primary" name="nv">Not Visited</button>
-    <br>
-    <label for="vi">Visited : </label>
-    <button class="btn btn-success" name="vi">Visited</button>
-    <br>
-    <label for="mk">Marked For Review : </label>
-    <button class="btn btn-warning" name="mk">Marked For Review </button>
-    <br>
-</div>
+
+
 
 
 <%- include('partials/footer') %>

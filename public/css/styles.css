@@ -151,3 +151,11 @@ hr {
     position: absolute;
     right: 50px;
 }
+
+.footer {
+    height: 100px;
+    display: grid;
+    place-items: center;
+    background-color: #e8e8e8;
+    margin: 20px auto 0 auto;
+}

@@ -32,19 +32,20 @@
                 <div class="row">
                     <div class="col-4">
 
-                        <button class="btn btn-primary nav" type="button" value="-1">BACK</button>
+                        <button class="btn btn-lg  btn-primary nav" type="button" value="-1">BACK</button>
 
                     </div>
                     <div class="col-4">
 
-                        <button class="btn btn-primary " onclick="doit()" type="button"> ....Mark For Review ....
+                        <button class="btn btn-lg  btn-primary " onclick="doit()" type="button"> ....Mark For Review
+                            ....
                         </button>
 
                     </div>
 
                     <div class="col-4">
 
-                        <button class="btn btn-primary nav" type="button" value="+1">NEXT</button>
+                        <button class="btn  btn-lg btn-primary nav" type="button" value="+1">NEXT</button>
 
                     </div>
 
@@ -53,7 +54,7 @@
         </div>
     </div>
 </div>
-<button class="btn btn-primary d-block w-25 mx-auto my-3" onclick="doit1()" type="button" data-toggle="modal"
+<button class="btn btn-lg btn-primary d-block w-25 mx-auto my-3" onclick="doit1()" type="button" data-toggle="modal"
     data-target="#modalCenter" id="modalBtn">
     Submit</button>
 
@@ -73,11 +74,11 @@
                 <h4 id="modalContent"></h4>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-lg btn-secondary" data-dismiss="modal">Close</button>
                 <form action="/submit" method="post">
                     <input type="hidden" name="rollNo" value=<%= rollNo %>>
                     <input type="hidden" name="submit" id="submit" value="">
-                    <button class="btn btn-primary" type="submit" id="f1">Go</button>
+                    <button class="btn btn-lg btn-primary" type="submit" id="f1">Go</button>
                 </form>
             </div>
         </div>
@@ -105,10 +106,10 @@
             a = 0;
         }
 
-        m = ((6 - min) >= 10) ? (6 - min).toString() + " : " : "0" + (6 - min).toString() + " : ";
+        m = ((9 - min) >= 10) ? (9 - min).toString() + " : " : "0" + (9 - min).toString() + " : ";
         sec = ((60 - a) >= 10) ? (60 - a).toString() : "0" + (60 - a).toString();
 
-        if (min === 6 && a === 59) {
+        if (min === 9 && a === 59) {
 
             clearInterval(kill);
             document.getElementById("modalBtn").click();

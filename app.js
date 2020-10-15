@@ -18,10 +18,10 @@ admin.initializeApp({
 });
 
 
-
 const db = admin.firestore();
 const docRef = db.collection("Students");
 const Que = db.collection("Questions");
+const Score = db.collection("Scores")
 
 
 var correct = 0;
@@ -33,6 +33,7 @@ var arr3 = [];
 
 var name = '';
 var email = '';
+var result1 = [];
 
 
 app.get("/", function (req, res) {
@@ -160,9 +161,12 @@ app.post("/submit", function (req, res) {
         var t = new Date()
         var key = t.getDate() + "." + t.getMonth() + "." + t.getFullYear() + "." + t.getHours() + "." + t.getMinutes();
 
-        docRef.doc(email).collection("Answer").doc(key.toString()).set({
+        Score.doc(email).set({
+            Name: name,
+            Email: email,
             Ans: ans,
-            Stat: correct - incorrect
+            Stat: correct - incorrect,
+            Time: key.toString()
         })
         res.redirect("/disp");
 
@@ -181,6 +185,43 @@ app.get("/disp", function (req, res) {
             right: correct,
             wrong: incorrect
         }
+    })
+})
+
+
+
+app.get("/result", function (req, res) {
+
+
+    Score.get().then(function (snapshot) {
+        const d = snapshot.docs
+        result1 = []
+        var stu = {
+            name: "",
+            email: "",
+            time: "",
+            score: ""
+        }
+        for (i in d) {
+            stu.email = d[i].data().Email
+            stu.name = d[i].data().Name
+            stu.time = d[i].data().Time,
+                stu.score = d[i].data().Stat
+            result1.push(stu)
+        }
+
+        result1.sort(function (a, b) {
+            if (a.Score > b.Score)
+                return 1;
+            else if (a.Score < b.Score)
+                return -1;
+            else
+                return 0;
+        });
+
+        res.render("Result", {
+            data: result1
+        })
     })
 })
 

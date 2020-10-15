@@ -30,8 +30,6 @@ var arr3 = [];
 
 var name = '';
 var email = '';
-var key = 0;
-
 
 
 app.get("/", function (req, res) {
@@ -87,8 +85,7 @@ app.post("/maker2", function (req, res) {
 app.post("/login", function (req, res) {
     name = req.body.name;
     email = req.body.email;
-    var d = new Date()
-    time = d.getTime();
+
 
     docRef.doc(req.body.email).set({
         Name: name,
@@ -157,7 +154,8 @@ app.post("/submit", function (req, res) {
         }
 
 
-        key += 1;
+        var t = new Date()
+        var key = t.getDate() + '/' + t.getMonth() + '/' + t.getFullYear() + '  /' + t.getHours() + ':' + t.getMinutes();
 
         docRef.doc(email).collection("Answer").doc(key.toString()).set({
             Ans: ans,

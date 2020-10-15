@@ -196,29 +196,31 @@ app.get("/result", function (req, res) {
     Score.get().then(function (snapshot) {
         const d = snapshot.docs
         result1 = []
-        var stu = {
-            name: "",
-            email: "",
-            time: "",
-            score: ""
-        }
+
         for (i in d) {
+            var stu = {
+                name: "",
+                email: "",
+                time: "",
+                score: ""
+            }
             stu.email = d[i].data().Email
             stu.name = d[i].data().Name
-            stu.time = d[i].data().Time,
-                stu.score = d[i].data().Stat
+            stu.time = d[i].data().Time
+            stu.score = d[i].data().Stat
+
             result1.push(stu)
         }
 
         result1.sort(function (a, b) {
-            if (a.Score > b.Score)
-                return 1;
-            else if (a.Score < b.Score)
+            if (a.score > b.score)
                 return -1;
+            else if (a.score < b.score)
+                return 1;
             else
                 return 0;
         });
-
+        // console.log(result1);
         res.render("Result", {
             data: result1
         })

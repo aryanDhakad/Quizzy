@@ -1,5 +1,5 @@
 <%- include('partials/header') %>
-<input type="hidden" id="mxLength" value=<%= data.length %>>
+
 <table class="table">
 
     <thead class="thead-dark">
@@ -12,7 +12,7 @@
     <tbody>
         <%for( i in data){%>
         <tr>
-            <td><%= i+1 %> </td>
+            <td><%= i %> </td>
             <td><%= data[i].name %> </td>
             <td><%= data[i].email %> </td>
             <td><%= data[i].time %> </td>

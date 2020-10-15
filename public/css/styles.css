@@ -9,7 +9,8 @@ input[type="checkbox"] {
 #heading {
     text-align: left;
     padding: 5px 20px;
-
+    overflow: scroll;
+    height: 220px;
     color: #1a1a2e;
     border-radius: 25px;
 }

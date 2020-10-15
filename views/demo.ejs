@@ -18,7 +18,7 @@
         <div class="col-10">
             <% data.forEach(element => {%>
             <div class="question" id="<%= element.id %>" style="display: none">
-                <h1 id="heading">Q<%= element.id %>. <%= element.title %> </h1>
+                <pre><h4 id="heading">Q<%= element.id %>. <%= element.title %> </h4></pre>
                 <%for( i in element.options){%>
                 <div class="options">
                     <label><%= i %> </label>

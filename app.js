@@ -155,7 +155,7 @@ app.post("/submit", function (req, res) {
 
 
         var t = new Date()
-        var key = t.getDate() + '/' + t.getMonth() + '/' + t.getFullYear() + '  /' + t.getHours() + ':' + t.getMinutes();
+        var key = t.getDate() + "." + t.getMonth() + "." + t.getFullYear() + "." + t.getHours() + "." + t.getMinutes();
 
         docRef.doc(email).collection("Answer").doc(key.toString()).set({
             Ans: ans,

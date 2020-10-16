@@ -27,8 +27,8 @@
                 <h1>Your Answer : </h1>
                 <%for( i in element.check){%>
                 <div class="options1">
-                    <h3 class="mx-4"><%= element.check[i].optNo %> </h3>
-                    <h3 class="mx-4"> <%= element.check[i].optCont %> </h3>
+
+                    <h3 class="mx-4 px-4"> <%= element.check[i].optCont %> </h3>
                     <%if(element.check[i].optBool){%>
                     <span class="badge badge-success Bool mx-5">
                         <h3 class="resultOpt"> <%= element.check[i].optBool %> </h3>
@@ -43,8 +43,8 @@
                     <h1>Correct Answer : </h1>
                     <%for( i in element.corr){%>
                     <div class="options1">
-                        <h3 class="mx-4"><%= element.corr[i].optNo %> </h3>
-                        <h3 class="mx-4"> <%= element.corr[i].optCont %> </h3>
+
+                        <h3 class="mx-4 px-4"> <%= element.corr[i].optCont %> </h3>
                         <%if(element.corr[i].optBool){%>
                         <span class="badge badge-success Bool mx-5">
                             <h3 class="resultOpt"> <%= element.corr[i].optBool %> </h3>

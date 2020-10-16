@@ -17,7 +17,6 @@ admin.initializeApp({
     databaseURL: "https://quiz1-c4888.firebaseio.com"
 });
 
-
 const db = admin.firestore();
 const docRef = db.collection("Students");
 const Que = db.collection("Questions");
@@ -34,6 +33,7 @@ var arr3 = [];
 var name = '';
 var email = '';
 var result1 = [];
+
 
 
 app.get("/", function (req, res) {
@@ -91,16 +91,37 @@ app.post("/login", function (req, res) {
     email = req.body.email;
 
 
-    docRef.doc(req.body.email).set({
-        Name: name,
-        Email: email
+    docRef.get().then(function (snapshot) {
+        const d1 = snapshot.docs
+        var flg = 0;
+        for (i in d1) {
+            if (d1[i].data().Email == email) {
+                flg = 1
+                var ee = {
+                    ...d1[i].data(),
+                    Attempt: d1[i].data().Attempt + 1
+                }
+                docRef.doc(email).set(ee)
+            }
+        }
+
+        if (flg == 0) {
+            docRef.doc(req.body.email).set({
+                Name: name,
+                Email: email,
+                Attempt: 1
+            })
+        }
+
+        arr3 = []
+        Que.get().then(function (doc) {
+            for (i in doc.docs)
+                arr3.push(doc.docs[i].data())
+            res.redirect("/part1")
+        })
+
     })
-    arr3 = []
-    Que.get().then(function (doc) {
-        for (i in doc.docs)
-            arr3.push(doc.docs[i].data())
-        res.redirect("/part1")
-    })
+
 })
 
 app.get("/part1", function (req, res) {
@@ -161,14 +182,26 @@ app.post("/submit", function (req, res) {
         var t = new Date()
         var key = t.getDate() + "." + t.getMonth() + "." + t.getFullYear() + "." + t.getHours() + "." + t.getMinutes();
 
-        Score.doc(email).set({
-            Name: name,
-            Email: email,
-            Ans: ans,
-            Stat: correct - incorrect,
-            Time: key.toString()
+        Score.get().then(function (snapshot) {
+            const dd = snapshot.docs
+            var flg = 0
+            for (i in dd) {
+                if (dd[i].data().Email == email) {
+                    flg = 1;
+                }
+            }
+            if (flg == 0) {
+                Score.doc(email).set({
+                    Name: name,
+                    Email: email,
+                    Ans: ans,
+                    Stat: correct - incorrect,
+                    Time: key.toString()
+                })
+
+            }
+            res.redirect("/disp");
         })
-        res.redirect("/disp");
 
     })
 })

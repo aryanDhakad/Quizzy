@@ -90,6 +90,14 @@ form {
 }
 
 /* HOME PAGE */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
+
+.jumbotron {
+    background: rgb(4, 137, 245);
+    background: radial-gradient(circle, rgba(4, 137, 245, 0.9976365546218487) 23%, rgba(50, 79, 80, 1) 80%, rgba(7, 22, 25, 1) 100%);
+    font-family: 'Roboto Mono', monospace;
+}
+
 .homeBtn {
     display: block;
     margin: 10px auto;
@@ -157,6 +165,7 @@ hr {
     height: 100px;
     display: grid;
     place-items: center;
-    background-color: #e8e8e8;
+    background-color: #686d76;
+    color: #ffffff;
     margin: 20px auto 0 auto;
 }

@@ -154,3 +154,8 @@ hr {
     color: #ffffff;
     margin: 20px auto 0 auto;
 }
+
+/* ANIMATIONS */
+.btn-green:hover {
+    background-color: green;
+}

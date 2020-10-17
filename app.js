@@ -10,11 +10,11 @@ app.set('view engine', 'ejs');
 
 var admin = require("firebase-admin");
 
-var serviceAccount = require("./firstr1.json");
+var serviceAccount = require("./firstr.json");
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    // databaseURL: "https://quiz1-c4888.firebaseio.com"
+    databaseURL: "https://quiz1-c4888.firebaseio.com"
 });
 
 const db = admin.firestore();

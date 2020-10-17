@@ -20,7 +20,8 @@
             <td><%= data[i].time %> </td>
             <td style="background-color: rgb(230, 94, 94);"><%= data[i].wrong %> </td>
             <td style="background-color: rgb(18, 207, 18);"><%= data[i].right %> </td>
-            <td style="background-color: rgb(148, 148, 248)"><%= data[i].right - data[i].wrong %> </td>
+            <td style="background-color: rgb(148, 148, 248); font-size: 1.8rem; font-weight: bold;">
+                <%= data[i].right - data[i].wrong %> </td>
         </tr>
         <%}%>
         

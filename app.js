@@ -195,7 +195,8 @@ app.post("/submit", function (req, res) {
                     Name: name,
                     Email: email,
                     Ans: ans,
-                    Stat: correct - incorrect,
+                    right: correct || 0,
+                    wrong: incorrect || 0,
                     Time: key.toString()
                 })
 

@@ -7,20 +7,20 @@
         <th>Name</th>
         <th>Email</th>
         <th>Time </th>
-        <th>Correct </th>
         <th>Incorrect </th>
+        <th>Correct </th>
         <th>Total </th>
     </thead>
     <tbody>
         <%for( i in data){%>
         <tr>
             <td><%= i %> </td>
-            <td><%= data[i].name %> </td>
-            <td><%= data[i].email %> </td>
+            <td style="font-size: 1.8rem;"><%= data[i].name %> </td>
+            <td style="font-size: 1.8rem;"><%= data[i].email %> </td>
             <td><%= data[i].time %> </td>
-            <td><%= data[i].right %> </td>
-            <td><%= data[i].wrong %> </td>
-            <td><%= data[i].right - data[i].wrong %> </td>
+            <td style="background-color: rgb(230, 94, 94);"><%= data[i].wrong %> </td>
+            <td style="background-color: rgb(18, 207, 18);"><%= data[i].right %> </td>
+            <td style="background-color: rgb(148, 148, 248)"><%= data[i].right - data[i].wrong %> </td>
         </tr>
         <%}%>
         

@@ -10,11 +10,11 @@ app.set('view engine', 'ejs');
 
 var admin = require("firebase-admin");
 
-var serviceAccount = require("./firstr.json");
+var serviceAccount = require("./firstr1.json");
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://quiz1-c4888.firebaseio.com"
+    // databaseURL: "https://quiz1-c4888.firebaseio.com"
 });
 
 const db = admin.firestore();
@@ -195,8 +195,8 @@ app.post("/submit", function (req, res) {
                     Name: name,
                     Email: email,
                     Ans: ans,
-                    right: correct || 0,
-                    wrong: incorrect || 0,
+                    right: correct + "",
+                    wrong: incorrect + "",
                     Time: key.toString()
                 })
 
@@ -236,20 +236,22 @@ app.get("/result", function (req, res) {
                 name: "",
                 email: "",
                 time: "",
-                score: ""
+                right: 0,
+                wrong: 0
             }
             stu.email = d[i].data().Email
             stu.name = d[i].data().Name
             stu.time = d[i].data().Time
-            stu.score = d[i].data().Stat
+            stu.right = d[i].data().right
+            stu.wrong = d[i].data().wrong
 
             result1.push(stu)
         }
 
         result1.sort(function (a, b) {
-            if (a.score > b.score)
+            if ((a.right - a.wrong) > (b.right - b.wrong))
                 return -1;
-            else if (a.score < b.score)
+            else if ((a.right - a.wrong) < (b.right - b.wrong))
                 return 1;
             else
                 return 0;

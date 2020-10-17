@@ -5,8 +5,8 @@
     <p class="lead"> A Simple Quizzing Platform </p>
 </div>
 
-<div class="row">
-    <div class="col-6">
+<div class="row" style="background-color: #d2d3c9; display: flex; align-items: center;">
+    <div class="col-6 ">
         <div>
             <h3>Color Values of Buttons</h3>
             <br>
@@ -29,11 +29,19 @@
             <div class="card-body">
 
                 <form action="/login" method="post">
-                    <label>Student Name : </label>
-                    <input type="text" name="name" placeholder="Akshay kumar" required>
-                    <br>
-                    <label for="passowrd">Email : </label>
-                    <input type="email" name="email" placeholder="khiladi786@email.com" required>
+                    <div class="form-group">
+                        <label for="name">
+                            <h4>Student Name </h4>
+                        </label>
+                        <input type="text" name="name" placeholder="Akshay kumar" class="form-control"
+                            style="width: 300px" required>
+                        <br>
+                        <label for="passowrd">
+                            <h4>Email</h4>
+                        </label>
+                        <input type="email" name="email" placeholder="khiladi786@email.com" class="form-control"
+                            style="width: 300px" required>
+                    </div>
             </div>
             <div class="card-footer">
                 <button type="submit" name="btn1" class="btn btn-lg btn-primary rounded shadow homeBtn"> Start </button>

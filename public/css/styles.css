@@ -101,6 +101,7 @@ form {
 .homeBtn {
     display: block;
     margin: 10px auto;
+    width: 180px;
 }
 
 .card-footer {
@@ -117,22 +118,6 @@ form {
 .card {
     background-color: #e8ded2;
     align-content: center;
-}
-
-input[type="text"] {
-    box-sizing: border-box;
-    border-radius: 25px;
-    padding: 5px 7px;
-    margin: 10px 20px;
-    transition: .4s
-}
-
-input[type="text"]:focus {
-    display: inline;
-    border-width: 0;
-    border-bottom: 5px solid purple;
-
-
 }
 
 hr {

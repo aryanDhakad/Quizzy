@@ -64,11 +64,6 @@ h3 {
     margin: 10px auto;
 }
 
-.conatiner1 {
-    display: flex;
-    flex-flow: row wrap;
-}
-
 .Any {
     margin: 10px 10px;
     width: 80px;
@@ -158,4 +153,12 @@ hr {
 /* ANIMATIONS */
 .btn-green:hover {
     background-color: green;
+}
+
+@media (max-width: 1000px) {
+    .col-lg-2 {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
 }

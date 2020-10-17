@@ -38,7 +38,7 @@ h3 {
 
 .ans-area {
     border-radius: 35px;
-    height: 600px;
+    min-height: 600px;
     padding: 30px;
     width: 100%;
     background-color: #e8e8e8;

@@ -2,8 +2,11 @@
 <input type="hidden" id="mxLength" value=<%= data.length %>>
 
 <div>
-    <h1 class="bg-info p-3">Student ID : <%= rollNo %></h1>
-    <h3 class="bg-danger text-white cust">TIMER => <span id="watch"></span> </h3>
+    <h1 class="bg-info p-3 cust1">Student ID : <%= rollNo %></h1>
+    <h3 class="bg-danger text-white cust cust1" id="timer1">TIMER => <span id="watch"></span> </h3>
+</div>
+<div class="my-5 p-4">
+    <button class="btn btn-primary btn-lg" onclick="darkmode()" type="button" id="darkModeBtn">Dark Mode</button>
 </div>
 <div class="ans-area">
     <div class="row">
@@ -29,8 +32,10 @@
                 <% } else { %>
                 <div class="question" id="<%= element.id %>" style="display: none">
                     <%}%>
-                <pre><h4 id="heading">Q<%= element.id %>. <%= element.title %> </h4>
+                <pre>
+                    <h4 id="heading">Q<%= element.id %>. <%= element.title %> </h4>
                     </pre>
+
                     <%for( i in element.options){%>
                     <div class="options">
                         <input type="checkbox" class="bool2" id="<%= element.id %>.<%= i %>">
@@ -55,7 +60,9 @@
 
                         <div class="col-md-4  py-3">
 
-                            <button class="btn btn-lg  btn-primary  py-3" onclick="doit()" type="button"> ....Mark For
+                            <button class="btn btn-lg  btn-primary  py-3" onclick="doit()" id="markForReview"
+                                type="button">
+                                ....Mark For
                                 Review
                                 ....
                             </button>
@@ -74,14 +81,14 @@
     <!-- Modal -->
     <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
+            <div class="modal-content bg-dark">
                 <div class="modal-header">
                     <h5 class="modal-title">SUBMIT AND EXIT!</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="color: #fff;">
                     <h3>Answered : </h3>
                     <h4 id="modalContent"></h4>
                 </div>

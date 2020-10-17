@@ -1,5 +1,6 @@
 body {
     text-align: center;
+
 }
 
 input[type="checkbox"] {
@@ -161,4 +162,14 @@ hr {
         flex-flow: row wrap;
     }
 
+}
+
+/* DARK MODE CLASSES */
+.dark1 {
+    background-color: rgb(34, 31, 31);
+    color: white;
+}
+
+.grey1 {
+    background-color: grey;
 }

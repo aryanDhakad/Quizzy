@@ -82,24 +82,32 @@ function doit1() {
 
 }
 
-// function doit2() {
-//     var arr2 = Array.from($("input[type=text]"))
-//     var arr2Ans = []
-//     arr2.forEach(ele => {
-//         if (ele.value !== "")
-//             arr2Ans.push(ele.id + "." + ele.value)
-//     })
-//     $("#submit")[0].value = arr2Ans;
+// DARK MODE
 
-//     var st = ""
-//     for (i in arr2Ans) {
-//         if (arr2Ans[i].split(".")[1] !== "") {
-//             st += arr2Ans[i].split(".")[0];
-//             st += " , "
-//         }
-//     }
+function darkmode() {
+    // Array.from($(".ans-area"))[0].classList.toggle("grey1")
+    $("body").toggleClass("dark1")
+    Array.from($(".nav")).forEach(element => {
 
-//     $("#modalContent")[0].innerHTML = st;
-//     clearInterval(kill)
+        element.classList.toggle("dark1")
+    })
+    Array.from($(".Any")).forEach(element => {
 
-// }
+        element.classList.toggle("dark1")
+    })
+    Array.from($(".options")).forEach(element => {
+
+        element.classList.toggle("dark1")
+    })
+
+    $("#modalBtn").toggleClass("grey1")
+    $("#markForReview").toggleClass("dark1")
+    $("#timer1").toggleClass("bg-dark")
+    $(".ans-area").toggleClass("grey1")
+    $("#darkModeBtn").toggleClass("grey1")
+    Array.from($(".cust1")).forEach(element => {
+
+        element.classList.toggle("bg-dark")
+    })
+
+}

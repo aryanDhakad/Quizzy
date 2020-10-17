@@ -2,13 +2,15 @@
 <input type="hidden" id="mxLength" value=<%= data.length %>>
 
 <div>
-    <h1 class="bg-info p-3">Student ID : <%= rollNo %>
+    <h1 class="bg-info p-3 cust1">Student ID : <%= rollNo %>
     </h1>
-    <h1> <span class="badge badge-success"><%= stat.right %> </span>
-        <span class="badge badge-danger"><%= stat.wrong %></span>
-        <span class="badge badge-primary">Total : <%= stat.right - stat.wrong %> </span></h1>
+    <h1> <span class="badge badge-success "><%= stat.right %> </span>
+        <span class="badge badge-danger "><%= stat.wrong %></span>
+        <span class="badge badge-primary cust1">Total : <%= stat.right - stat.wrong %> </span></h1>
 </div>
-
+<div class="my-5 p-4">
+    <button class="btn btn-primary btn-lg" onclick="darkmode()">Dark Mode</button>
+</div>
 <div class="ans-area">
     <div class="row">
         <div class="col-lg-2 py-3">
@@ -32,7 +34,7 @@
                     <%}%>
                 <pre><h4 id="heading">Q<%= element.id %>. <%= element.title %> </h4>
                     </pre>
-                    <h1>Your Answer : </h1>
+                    <h1 style="color: #000;">Your Answer : </h1>
                     <%for( i in element.check){%>
                     <div class="options1">
 
@@ -48,7 +50,7 @@
                         <%}%>
             </div>
             <%}%>
-                        <h1>Correct Answer : </h1>
+                        <h1 style="color: #000;">Correct Answer : </h1>
                         <%for( i in element.corr){%>
                         <div class="options1">
 
@@ -92,7 +94,7 @@
 
         <div class="d-block" style="margin: 100px auto 30px">
             <form action="/" method="get">
-                <button class="btn btn-primary btn-lg btn-green w-100 px-5 py-4" type="submit">End
+                <button class="btn btn-primary btn-lg btn-green w-100 px-5 cust1" type="submit">End
                     Test
                 </button>
             </form>

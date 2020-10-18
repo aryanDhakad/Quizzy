@@ -102,12 +102,16 @@ function darkmode() {
 
     $("#modalBtn").toggleClass("grey1")
     $("#markForReview").toggleClass("dark1")
-    $("#timer1").toggleClass("bg-dark")
+
     $(".ans-area").toggleClass("grey1")
     $("#darkModeBtn").toggleClass("grey1")
     Array.from($(".cust1")).forEach(element => {
 
         element.classList.toggle("bg-dark")
+    })
+    Array.from($(".heading-font")).forEach(element => {
+        element.classList.toggle("text-white")
+        element.classList.toggle("dark1")
     })
 
 }

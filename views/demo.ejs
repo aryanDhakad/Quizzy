@@ -3,7 +3,7 @@
 
 <div>
     <h1 class="bg-info p-3 cust1">Student ID : <%= rollNo %></h1>
-    <h3 class="bg-danger text-white cust cust1" id="timer1">TIMER => <span id="watch"></span> </h3>
+    <h3 class="bg-danger text-white cust" id="timer1">TIMER => <span id="watch"></span> </h3>
 </div>
 <div class="my-5 p-4">
     <button class="btn btn-primary btn-lg" onclick="darkmode()" type="button" id="darkModeBtn">Dark Mode</button>
@@ -33,7 +33,7 @@
                 <div class="question" id="<%= element.id %>" style="display: none">
                     <%}%>
                 <pre>
-                    <h4 id="heading">Q<%= element.id %>. <%= element.title %> </h4>
+                    <h4 id="heading" class="heading-font">Q<%= element.id %>. <%= element.title %> </h4>
                     </pre>
 
                     <%for( i in element.options){%>

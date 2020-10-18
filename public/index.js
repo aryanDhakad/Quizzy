@@ -99,7 +99,10 @@ function darkmode() {
 
         element.classList.toggle("dark1")
     })
+    Array.from($(".options1")).forEach(element => {
 
+        element.classList.toggle("dark1")
+    })
     $("#modalBtn").toggleClass("grey1")
     $("#markForReview").toggleClass("dark1")
 

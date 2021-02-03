@@ -14,7 +14,7 @@ var serviceAccount = require("./firstr.json");
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://quiz1-c4888.firebaseio.com"
+    databaseURL: "https://quiz-taker-57890.firebaseio.com"
 });
 
 const db = admin.firestore();

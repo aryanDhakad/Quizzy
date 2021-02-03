@@ -10,7 +10,7 @@ app.set('view engine', 'ejs');
 
 var admin = require("firebase-admin");
 
-var serviceAccount = require("./firstr.json");
+var serviceAccount = require("./firstr1.json");
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),

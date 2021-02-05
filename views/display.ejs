@@ -12,8 +12,8 @@
     <button class="btn btn-primary btn-lg" onclick="darkmode()">Dark Mode</button>
 </div>
 <div class="ans-area">
-    <div class="row">
-        <div class="col-lg-2 py-3">
+    <div class="row ">
+        <div class="col-lg-5 py-5 d-flex flex-row flex-wrap overflow-auto">
 
             <% data.forEach(element => {%>
             <% if( element.id == 1){%>
@@ -25,7 +25,7 @@
 
         </div>
 
-        <div class="col-lg-10 ">
+        <div class="col-lg-7 ">
             <% data.forEach(element => {%>
             <% if( element.id == 1){%>
             <div class="question" id="<%= element.id %>">
@@ -94,8 +94,13 @@
 
         <div class="d-block" style="margin: 100px auto 30px">
             <form action="/" method="get">
-                <button class="btn btn-primary btn-lg btn-green w-100 px-5 cust1" type="submit">End
+                <button class="btn rounded-pill btn-primary btn-lg btn-green w-100 px-5 cust1" type="submit">End
                     Test
+                </button>
+            </form>
+            <form action="/result" method="get">
+                <button class="btn rounded-pill btn-danger btn-lg  w-100 px-5 cust1" type="submit">Result
+                    
                 </button>
             </form>
         </div>

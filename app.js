@@ -117,6 +117,10 @@ app.post("/login", function (req, res) {
         Que.get().then(function (doc) {
             for (i in doc.docs)
                 arr3.push(doc.docs[i].data())
+            arr3.sort(function (a, b) {
+                return Number(a.id) - Number(b.id);
+            })
+            
             res.redirect("/part1")
         })
 
@@ -209,7 +213,10 @@ app.post("/submit", function (req, res) {
 
 
 app.get("/disp", function (req, res) {
-
+    ans.sort(function (a, b) {
+        return Number(a.id) - Number(b.id);
+    })
+    
 
     res.render("display", {
 
